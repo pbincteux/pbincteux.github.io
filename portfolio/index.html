@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pierre Bincteux — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --bg-card: #111111;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-secondary: rgba(255,255,255,0.7);
+      --accent: #ffffff;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 80px 0; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .nav-name {
+      font-size: 15px; font-weight: 500; color: var(--text);
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+
+    .nav-links a {
+      font-size: 14px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero {
+      padding-top: 160px; padding-bottom: 100px;
+      position: relative; overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+      color: var(--text-muted); text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 640px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--text-muted);
+    }
+
+    .hero-sub {
+      font-size: 17px; color: var(--text-secondary);
+      max-width: 480px; line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all 0.2s; cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #ffffff; color: #000;
+    }
+    .btn-primary:hover { background: #e8e8e8; }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+    /* ── METRICS ─────────────────────────────────────── */
+    #metrics { padding: 0 0 80px; }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .metric {
+      background: var(--bg-card);
+      padding: 32px 28px;
+    }
+
+    .metric-value {
+      font-size: 42px; font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── WORK ────────────────────────────────────────── */
+    .section-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-link {
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .section-link:hover { color: var(--text); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+    .project-card.featured {
+      grid-column: span 2;
+    }
+
+    .project-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: #1a1a1a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-muted);
+      position: relative; overflow: hidden;
+    }
+
+    .project-card.featured .project-thumb { aspect-ratio: 21/9; }
+
+    .project-thumb-inner {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1e1e1e 0%, #141414 100%);
+    }
+
+    .project-body { padding: 24px; }
+
+    .project-tag {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 18px; font-weight: 600;
+      color: var(--text); letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .project-meta {
+      display: flex; gap: 16px; margin-top: 16px;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+
+    .project-meta span {
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about { border-top: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: #1a1a1a;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 13px;
+      border: 1px solid var(--border);
+    }
+
+    .about-heading {
+      font-size: 28px; font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+
+    .about-body {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+
+    .skills-row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 24px;
+    }
+
+    .skill-tag {
+      font-size: 12px; font-weight: 500;
+      padding: 5px 12px; border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-eyebrow {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+
+    .contact-heading {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; letter-spacing: -0.03em;
+      max-width: 500px; margin: 0 auto 32px;
+    }
+
+    .contact-links {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    footer p { font-size: 13px; color: var(--text-muted); }
+
+    /* ── FADE-IN ANIMATION ───────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 640px) {
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .metrics-grid .metric:last-child { grid-column: span 2; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <a href="#" class="nav-name">Pierre Bincteux</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <span class="hero-label fade-in">Senior Product Designer · Dublin, Ireland</span>
+      <h1 class="hero-headline fade-in">
+        I turn enterprise complexity into <em>experiences sellers actually want to use.</em>
+      </h1>
+      <p class="hero-sub fade-in">
+        10+ years in design — from brand and visual work at startups in Paris to owning end-to-end UX for global seller platforms at Salesforce. Research-led, AI-assisted, and obsessed with the gap between how products work and how people actually use them.
+      </p>
+      <div class="hero-actions fade-in">
+        <a href="#work" class="btn btn-primary">View my work</a>
+        <a href="resume.pdf" class="btn btn-ghost" target="_blank">Resume ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrics">
+    <div class="container">
+      <div class="metrics-grid fade-in">
+        <div class="metric">
+          <div class="metric-value">10+</div>
+          <div class="metric-label">Years designing products — from early-stage startups to Fortune 500</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">7 yrs 10 mo</div>
+          <div class="metric-label">At Salesforce owning strategy &amp; end-to-end UX for global seller platforms</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">0→1</div>
+          <div class="metric-label">Vision concepts shipped — from seller research through interactive prototype</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-title">Selected Work</span>
+        <a href="#" class="section-link">All projects →</a>
+      </div>
+      <div class="projects-grid">
+
+        <!-- Featured case study -->
+        <a href="case-study-q2c.html" class="project-card featured fade-in">
+          <div class="project-thumb">
+            <div class="project-thumb-inner"></div>
+            <img src="q2c-figma.png" alt="Q2C Deal Optimization" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;" />
+          </div>
+          <div class="project-body">
+            <div class="project-tag">Vision Concept · Enterprise UX · Salesforce</div>
+            <div class="project-title">Q2C Deal Optimization — Redesigning the end-to-end proposal journey for Salesforce sellers</div>
+            <div class="project-desc">Sellers were drowning in red tape and spreadsheets to close deals. I co-led a 0→1 vision concept — from seller research and stakeholder workshops through to an interactive prototype powered by agentic automations.</div>
+            <div class="project-meta">
+              <span>Role: Senior UX Designer</span>
+              <span>2026</span>
+              <span>Discovery → Prototype</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case study 2 placeholder -->
+        <a href="#" class="project-card fade-in">
+          <div class="project-thumb">
+            <div class="project-thumb-inner"></div>
+          </div>
+          <div class="project-body">
+            <div class="project-tag">Coming soon</div>
+            <div class="project-title">Your next case study</div>
+            <div class="project-desc">Add a second project here.</div>
+          </div>
+        </a>
+
+        <!-- Case study 3 placeholder -->
+        <a href="#" class="project-card fade-in">
+          <div class="project-thumb">
+            <div class="project-thumb-inner"></div>
+          </div>
+          <div class="project-body">
+            <div class="project-tag">Coming soon</div>
+            <div class="project-title">Your next case study</div>
+            <div class="project-desc">Add a third project here.</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <img src="pierre-profile.jpeg" alt="Pierre Bincteux" class="about-photo fade-in" style="object-fit: cover;" />
+        <div class="fade-in">
+          <h2 class="about-heading">Hey, I'm Pierre <span style="color:var(--text-muted); font-weight:400;">(pee-air bang-tuh)</span></h2>
+          <p class="about-body">
+            I'm a Senior Experience Designer at Salesforce in Dublin — product-first, research-led, and a strong believer that great enterprise UX is just as important as consumer UX (it's just harder to pull off).
+          </p>
+          <p class="about-body">
+            I started in visual and brand design at early-stage startups in Lyon and Paris, then moved into enterprise UX at Salesforce, where I've spent 7+ years owning strategy and end-to-end design for complex seller platforms. I'm also an internal champion of AI-assisted design — I've piloted Gemini, Claude, and Cursor across team workflows and led offsite workshops on how to use them effectively.
+          </p>
+          <div class="skills-row">
+            <span class="skill-tag">User Research</span>
+            <span class="skill-tag">Vision Prototyping</span>
+            <span class="skill-tag">Enterprise UX</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Journey Mapping</span>
+            <span class="skill-tag">AI-assisted Design</span>
+            <span class="skill-tag">0→1 Concepts</span>
+            <span class="skill-tag">B2B SaaS</span>
+            <span class="skill-tag">Seller Platforms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="contact-eyebrow fade-in">Get in touch</p>
+      <h2 class="contact-heading fade-in">Let's make something great together.</h2>
+      <div class="contact-links fade-in">
+        <a href="mailto:pbincteux@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://linkedin.com/in/pierrebincteux" class="btn btn-ghost" target="_blank">LinkedIn ↗</a>
+        <a href="pbincteux_cv.pdf" class="btn btn-ghost" target="_blank">Resume ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner">
+      <p>© 2026 Pierre Bincteux</p>
+      <p>Built with care.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+  </script>
+
+</body>
+</html>

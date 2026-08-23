@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q2C Deal Optimization — Pierre Bincteux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --bg-card: #111111;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-secondary: rgba(255,255,255,0.7);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 900px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .nav-name {
+      font-size: 15px; font-weight: 500; color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 14px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero { padding: 140px 0 64px; }
+
+    .case-meta {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .tag-highlight {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-secondary);
+    }
+
+    .case-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.07; margin-bottom: 20px;
+    }
+
+    .case-subtitle {
+      font-size: 18px; color: var(--text-secondary);
+      line-height: 1.65; max-width: 600px;
+    }
+
+    /* ── HERO DETAILS ROW ─────────────────────────────── */
+    .details-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 48px 0 0;
+    }
+
+    .detail-cell {
+      background: var(--bg-card);
+      padding: 20px 24px;
+    }
+
+    .detail-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+
+    .detail-value {
+      font-size: 14px; font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── HERO IMAGE ───────────────────────────────────── */
+    .hero-image {
+      width: 100%; aspect-ratio: 16/9;
+      background: #111;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 48px 0 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 13px;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* ── CONTENT ──────────────────────────────────────── */
+    .content-section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 20px;
+    }
+
+    .section-heading {
+      font-size: 26px; font-weight: 700;
+      letter-spacing: -0.025em; margin-bottom: 20px;
+    }
+
+    .body-text {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+
+    .body-text:last-child { margin-bottom: 0; }
+
+    .hmw {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin: 32px 0;
+    }
+
+    .hmw-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .hmw-text {
+      font-size: 18px; font-weight: 500;
+      line-height: 1.55; color: var(--text);
+    }
+
+    /* ── STAT HIGHLIGHT ───────────────────────────────── */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .stat-cell {
+      background: var(--bg-card);
+      padding: 28px 24px;
+    }
+
+    .stat-value {
+      font-size: 36px; font-weight: 700;
+      letter-spacing: -0.04em; margin-bottom: 6px;
+    }
+
+    .stat-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.4;
+    }
+
+    /* ── APPROACH CARDS ───────────────────────────────── */
+    .approach-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin: 32px 0;
+    }
+
+    .approach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .approach-number {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .approach-title {
+      font-size: 15px; font-weight: 600;
+      color: var(--text); margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .approach-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* ── DELIVERABLES ─────────────────────────────────── */
+    .deliverables {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+    }
+
+    .deliverable-tag {
+      font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    /* ── NEXT STEPS LIST ──────────────────────────────── */
+    .next-steps { list-style: none; margin: 24px 0; }
+
+    .next-steps li {
+      display: flex; gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .next-steps li:last-child { border-bottom: none; }
+
+    .step-number {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.05em;
+      min-width: 24px; padding-top: 1px;
+    }
+
+    .step-text {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.55;
+    }
+
+    /* ── BACK BUTTON ──────────────────────────────────── */
+    .back-section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all 0.2s;
+    }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+    .btn-primary {
+      background: #fff; color: #000;
+    }
+    .btn-primary:hover { background: #e8e8e8; }
+
+    /* ── FADE IN ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── MEDIA ────────────────────────────────────────── */
+    .media-full {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 40px 0;
+      overflow: hidden;
+      display: block;
+    }
+
+    .media-full img {
+      width: 100%; display: block;
+    }
+
+    .media-caption {
+      font-size: 12px; color: var(--text-muted);
+      text-align: center; margin-top: -28px;
+      margin-bottom: 40px; padding: 0 8px;
+    }
+
+    /* ── VIDEO ────────────────────────────────────────── */
+    .video-wrap {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 40px 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-wrap video {
+      width: 100%; display: block;
+    }
+
+    /* ── BEFORE / AFTER SLIDER ────────────────────────── */
+    .ba-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 40px 0;
+      overflow: hidden;
+      cursor: ew-resize;
+      user-select: none;
+    }
+
+    .ba-before {
+      display: block;
+      width: 100%;
+    }
+
+    .ba-after-clip {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: inset(0 50% 0 0);
+    }
+
+    .ba-after-clip img {
+      display: block;
+      width: 100%;
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: #fff;
+      pointer-events: none;
+    }
+
+    .ba-handle::before, .ba-handle::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 36px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .ba-handle::before { top: 50%; margin-top: -18px; }
+
+    .ba-knob {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px; height: 40px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .ba-knob svg {
+      width: 16px; height: 16px;
+    }
+
+    .ba-label {
+      position: absolute;
+      bottom: 16px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      color: #fff;
+    }
+
+    .ba-label-before { left: 16px; }
+    .ba-label-after { right: 16px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 640px) {
+      .details-row { grid-template-columns: 1fr 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <a href="index.html" class="nav-name">Pierre Bincteux</a>
+      <a href="index.html" class="nav-back">← All work</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="case-meta fade-in">
+        <span class="tag tag-highlight">Vision Concept</span>
+        <span class="tag">Enterprise UX</span>
+        <span class="tag">B2B Sales</span>
+        <span class="tag">Salesforce</span>
+        <span class="tag">Agentic Automation</span>
+      </div>
+
+      <h1 class="case-title fade-in">Q2C Deal Optimization</h1>
+      <p class="case-subtitle fade-in">
+        Salesforce sellers were spending hours wrestling with spreadsheets, approvals, and fragmented tools to close a single deal. We designed a next-generation proposal experience — end-to-end, agentic-powered, and legal-ready — from scratch.
+      </p>
+
+      <div class="details-row fade-in">
+        <div class="detail-cell">
+          <div class="detail-label">My Role</div>
+          <div class="detail-value">Senior UX Designer</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Team</div>
+          <div class="detail-value">Principal Experience Architect, 2 Directors</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Status</div>
+          <div class="detail-value">Vision Concept</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Year</div>
+          <div class="detail-value">2026</div>
+        </div>
+      </div>
+
+      <div class="media-full fade-in">
+        <img src="q2c-figma.png" alt="Q2C Deal Optimization — Figma overview" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Context</p>
+      <h2 class="section-heading fade-in">Closing enterprise deals is broken</h2>
+      <p class="body-text fade-in">
+        At Salesforce, the Quote-to-Cash (Q2C) process is the critical path from "customer interested" to "contract signed." But for Account Executives, it had become a maze of manual steps, custom spreadsheets, fragmented approvals, and legal back-and-forth — before a single deal could close.
+      </p>
+      <p class="body-text fade-in">
+        This project sat within Salesforce's internal Q2C Innovation initiative, working directly inside Org62 — Salesforce's own instance of Salesforce — at the Opportunity level. The goal: design a next-generation experience that sellers would actually want to use.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">The Problem</p>
+      <h2 class="section-heading fade-in">Too much red tape to close deals</h2>
+      <p class="body-text fade-in">
+        Sellers were starting from complex, multi-scenario proposals — different pricing configurations, discount levels, contract terms — and had to manually reconcile all of it before getting to a legal-ready contract. Each step introduced friction, delay, and risk of error.
+      </p>
+
+      <div class="hmw fade-in">
+        <p class="hmw-label">How might we</p>
+        <p class="hmw-text">"How might we help sellers start from a complex, multi-scenario proposal to create an optimally configured and legal-ready contract swiftly — in a way that increases customer trust and reduces attrition?"</p>
+      </div>
+
+      <div class="stat-row fade-in">
+        <div class="stat-cell">
+          <div class="stat-value">Multi</div>
+          <div class="stat-desc">Scenario proposals — sellers managing multiple pricing configurations simultaneously</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">Manual</div>
+          <div class="stat-desc">Every approval, discount check, and legal term managed in custom spreadsheets</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">0→1</div>
+          <div class="stat-desc">Greenfield — no existing unified experience to build on, only fragmented tools</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Approach</p>
+      <h2 class="section-heading fade-in">Designing the future of work through rigorous UX practice</h2>
+      <p class="body-text fade-in">
+        Rather than starting with wireframes, we started with the desired end-state: a legal-ready contract. Then we worked backward — identifying every data point, decision, and approval required to get there. This reverse-engineering approach kept us anchored to real seller outcomes, not assumptions.
+      </p>
+
+      <div class="approach-grid fade-in">
+        <div class="approach-card">
+          <div class="approach-number">01</div>
+          <div class="approach-title">Reverse Engineer Solution & Vision</div>
+          <div class="approach-desc">Started with the end-state — a legal-ready contract — and mapped backward to surface every required input, decision point, and approval along the way.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">02</div>
+          <div class="approach-title">UX Workshop</div>
+          <div class="approach-desc">Facilitated a collaborative deep-dive with stakeholders and product leads to align on seller pain points, workflow requirements, and priorities before touching Figma.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">03</div>
+          <div class="approach-title">Rapid Prototyping</div>
+          <div class="approach-desc">Ran iterative design cycles — bringing two separate quote visions into one unified end-to-end journey — refining in real-time with stakeholder feedback.</div>
+        </div>
+      </div>
+
+      <div class="media-full fade-in">
+        <img src="q2c-workshop.png" alt="UX Workshop session" />
+      </div>
+      <p class="media-caption fade-in">Collaborative UX workshop — aligning stakeholders on seller pain points and workflow requirements</p>
+
+      <p class="section-label fade-in" style="margin-top: 40px;">Key Deliverables</p>
+      <div class="deliverables fade-in">
+        <span class="deliverable-tag">Discovery & Seller Research</span>
+        <span class="deliverable-tag">1:1 AE Interviews</span>
+        <span class="deliverable-tag">Stakeholder Workshops</span>
+        <span class="deliverable-tag">Journey Mapping</span>
+        <span class="deliverable-tag">Wireframes</span>
+        <span class="deliverable-tag">Seller Validation & Testing</span>
+        <span class="deliverable-tag">Interactive Prototype</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">The Solution</p>
+      <h2 class="section-heading fade-in">A unified proposal journey — powered by agentic automation</h2>
+      <p class="body-text fade-in">
+        We designed the Deal Optimization experience as an app living inside Org62 at the Opportunity level — covering the complete end-to-end proposal journey in one place. The key shift: every manual task that previously required spreadsheets or back-and-forth with Deal Desk was replaced with intelligent, agentic automation.
+      </p>
+
+      <!-- Before / After slider -->
+      <div class="ba-wrap fade-in" id="ba-slider">
+        <img class="ba-before" src="q2c-before.png" alt="Before — wireframe" />
+        <div class="ba-after-clip" id="ba-clip">
+          <img src="q2c-after.png" alt="After — AI prototype" />
+        </div>
+        <div class="ba-handle" id="ba-handle">
+          <div class="ba-knob">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 3L2 8l3 5M11 3l3 5-3 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <span class="ba-label ba-label-before">Before</span>
+        <span class="ba-label ba-label-after">After</span>
+      </div>
+      <p class="media-caption fade-in">Drag to compare — wireframe exploration vs. final AI-powered prototype</p>
+
+      <p class="body-text fade-in">
+        Sellers can now create and compare multiple pricing scenarios in parallel, see a real-time Deal Score (0–100) reflecting approval probability and margin impact, and get automatic Approval Routing Impact previews — all before submitting to Legal.
+      </p>
+      <p class="body-text fade-in">
+        The experience was designed with Salesforce's Lightning Design System constraints while pushing for a significantly more capable and intuitive interface than sellers had ever had access to internally.
+      </p>
+
+      <div class="media-full fade-in">
+        <img src="q2c-prototype.png" alt="AI Studio prototype detail" />
+      </div>
+      <p class="media-caption fade-in">AI Studio interactive prototype — multi-scenario proposal view with real-time Deal Score</p>
+
+      <!-- Video -->
+      <div class="video-wrap fade-in">
+        <video controls preload="metadata" poster="q2c-figma.png">
+          <source src="q2c-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p class="media-caption fade-in">2-minute walkthrough of the full Q2C Deal Optimization experience</p>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">What's Next</p>
+      <h2 class="section-heading fade-in">From vision to MVP</h2>
+      <p class="body-text fade-in">
+        This was a vision concept — intentionally designed to show what's possible before scoping down to what's buildable. The next phase was defined around four priorities:
+      </p>
+      <ul class="next-steps fade-in">
+        <li>
+          <span class="step-number">01</span>
+          <span class="step-text">Test the solution with the target audience — validate the concept with real AEs in structured usability sessions.</span>
+        </li>
+        <li>
+          <span class="step-number">02</span>
+          <span class="step-text">Define MVP and iterations based on effort-to-value — work with engineering to scope the highest-impact features for a first release.</span>
+        </li>
+        <li>
+          <span class="step-number">03</span>
+          <span class="step-text">Define success metrics and governance — align on what "better" looks like: time-to-contract, approval cycle reduction, seller satisfaction.</span>
+        </li>
+        <li>
+          <span class="step-number">04</span>
+          <span class="step-text">Identify the next area to dig into — use research learnings to prioritize which seller pain point to tackle next.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BACK NAVIGATION -->
+  <section class="back-section">
+    <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+      <a href="index.html" class="btn btn-ghost">← Back to all work</a>
+      <a href="mailto:pbincteux@gmail.com" class="btn btn-primary">Let's talk →</a>
+    </div>
+  </section>
+
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+
+    // Before / After slider
+    const slider  = document.getElementById('ba-slider')
+    const clip    = document.getElementById('ba-clip')
+    const handle  = document.getElementById('ba-handle')
+    let dragging  = false
+
+    function setPos(clientX) {
+      const rect = slider.getBoundingClientRect()
+      let pct = (clientX - rect.left) / rect.width
+      pct = Math.max(0.02, Math.min(0.98, pct))
+      const pctStr = (pct * 100).toFixed(2) + '%'
+      const rightPct = ((1 - pct) * 100).toFixed(2) + '%'
+      clip.style.clipPath = `inset(0 ${rightPct} 0 0)`
+      handle.style.left   = pctStr
+    }
+
+    slider.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX) })
+    slider.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX) }, { passive: true })
+    window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX) })
+    window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX) }, { passive: true })
+    window.addEventListener('mouseup',  () => dragging = false)
+    window.addEventListener('touchend', () => dragging = false)
+  </script>
+
+</body>
+</html>
