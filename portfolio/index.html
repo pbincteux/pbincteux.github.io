@@ -275,6 +275,8 @@
       margin-top: 32px;
     }
 
+    .testimonial-card.full { grid-column: span 2; }
+
     .testimonial-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -413,6 +415,10 @@
     }
 
     @media (max-width: 640px) {
+      .testimonial-card.full { grid-column: span 1; }
+    }
+
+    @media (max-width: 640px) {
       .metrics-grid { grid-template-columns: 1fr 1fr; }
       .metrics-grid .metric:last-child { grid-column: span 2; }
       .projects-grid { grid-template-columns: 1fr; }
@@ -487,6 +493,19 @@
         <span class="section-title">Kind words</span>
       </div>
       <div class="testimonials-grid">
+
+        <div class="testimonial-card full fade-in">
+          <p class="testimonial-quote">
+            "Pierre is a pioneer. His ability to spot new trends and improve his day-to-day is inspiring! Pierre's curiosity and creativity constantly push him to experiment and try new approaches. He was amongst the first UX designers of our group to fearlessly play with AI technologies and figure out new ways to deliver exceptionally thought out vibe-coded visions. Having Pierre in your team results in pushing the envelope of what's thought to be possible. With Pierre, innovation is more than a buzzword, it's a reality."
+          </p>
+          <div class="testimonial-author">
+            <img src="Testimonials/pascal.png" alt="Pascal" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Pascal</div>
+              <div class="testimonial-role">Experience Strategist · Salesforce</div>
+            </div>
+          </div>
+        </div>
 
         <div class="testimonial-card fade-in">
           <p class="testimonial-quote">
