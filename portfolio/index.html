@@ -78,6 +78,35 @@
       pointer-events: none;
     }
 
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .hero-content { flex: 1; min-width: 0; }
+
+    .hero-image-wrap {
+      flex-shrink: 0;
+      width: 260px;
+      position: relative;
+    }
+
+    .hero-image-wrap::before {
+      content: '';
+      position: absolute; inset: -24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 120, 40, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 50%;
+      position: relative;
+    }
+
     .hero-label {
       display: inline-block;
       font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
@@ -86,12 +115,11 @@
     }
 
     .hero-headline {
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(32px, 5vw, 56px);
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
-      max-width: 640px;
     }
 
     .hero-headline em {
@@ -100,8 +128,8 @@
     }
 
     .hero-sub {
-      font-size: 17px; color: var(--text-secondary);
-      max-width: 480px; line-height: 1.65;
+      font-size: 16px; color: var(--text-secondary);
+      max-width: 460px; line-height: 1.65;
       margin-bottom: 40px;
     }
 
@@ -322,6 +350,11 @@
     .fade-in.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 720px) {
+      .hero-layout { flex-direction: column-reverse; gap: 40px; }
+      .hero-image-wrap { width: 180px; }
+    }
+
     @media (max-width: 640px) {
       .metrics-grid { grid-template-columns: 1fr 1fr; }
       .metrics-grid .metric:last-child { grid-column: span 2; }
@@ -349,16 +382,23 @@
   <!-- HERO -->
   <section id="hero">
     <div class="container">
-      <span class="hero-label fade-in">Senior Product Designer · Dublin, Ireland</span>
-      <h1 class="hero-headline fade-in">
-        I turn enterprise complexity into <em>experiences sellers actually want to use.</em>
-      </h1>
-      <p class="hero-sub fade-in">
-        10+ years in design — from brand and visual work at startups in Paris to owning end-to-end UX for global seller platforms at Salesforce. Research-led, AI-assisted, and obsessed with the gap between how products work and how people actually use them.
-      </p>
-      <div class="hero-actions fade-in">
-        <a href="#work" class="btn btn-primary">View my work</a>
-        <a href="resume.pdf" class="btn btn-ghost" target="_blank">Resume ↗</a>
+      <div class="hero-layout">
+        <div class="hero-content">
+          <span class="hero-label fade-in">Senior Product Designer · Dublin, Ireland</span>
+          <h1 class="hero-headline fade-in">
+            Complexity, simplified.<br><em>Research-first. Enterprise-fluent.</em>
+          </h1>
+          <p class="hero-sub fade-in">
+            10+ years in design — from brand and visual work at startups in Paris to owning end-to-end UX for global seller platforms at Salesforce. Research-led, AI-assisted, and obsessed with the gap between how products work and how people actually use them.
+          </p>
+          <div class="hero-actions fade-in">
+            <a href="#work" class="btn btn-primary">View my work</a>
+            <a href="pbincteux_cv.pdf" class="btn btn-ghost" target="_blank">Resume ↗</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap fade-in">
+          <img src="pierre-orange-cercle.png" alt="Pierre Bincteux" />
+        </div>
       </div>
     </div>
   </section>
