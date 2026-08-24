@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions Workspace — Pierre Bincteux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --bg-card: #111111;
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.45);
+      --text-secondary: rgba(255,255,255,0.7);
+      --orange: #E8671A;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 900px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .nav-name { font-size: 15px; font-weight: 500; color: var(--text); text-decoration: none; }
+
+    .nav-back {
+      font-size: 14px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero { padding: 140px 0 64px; }
+
+    .case-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+
+    .tag {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+      border: 1px solid var(--border); color: var(--text-muted);
+    }
+
+    .tag-highlight { border-color: rgba(232,103,26,0.45); color: var(--orange); }
+
+    .case-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.07; margin-bottom: 20px;
+    }
+
+    .case-subtitle {
+      font-size: 18px; color: var(--text-secondary);
+      line-height: 1.65; max-width: 600px;
+    }
+
+    /* ── DETAILS ROW ──────────────────────────────────── */
+    .details-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin: 48px 0 0;
+    }
+
+    .detail-cell { background: var(--bg-card); padding: 20px 24px; }
+
+    .detail-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+
+    .detail-value { font-size: 14px; font-weight: 500; color: var(--text); }
+
+    /* ── HERO IMAGE ───────────────────────────────────── */
+    .hero-image {
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 48px 0 0; overflow: hidden; display: block;
+    }
+
+    .hero-image img { width: 100%; display: block; }
+
+    /* ── CONTENT ──────────────────────────────────────── */
+    .content-section { padding: 64px 0; border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 20px;
+    }
+
+    .section-heading {
+      font-size: 26px; font-weight: 700;
+      letter-spacing: -0.025em; margin-bottom: 20px;
+    }
+
+    .body-text {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .body-text:last-child { margin-bottom: 0; }
+
+    .hmw {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius);
+      padding: 28px 32px; margin: 16px 0;
+    }
+
+    .hmw-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .hmw-text { font-size: 17px; font-weight: 500; line-height: 1.55; color: var(--text); }
+
+    /* ── STAT ROW ─────────────────────────────────────── */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin: 40px 0;
+    }
+
+    .stat-cell { background: var(--bg-card); padding: 28px 24px; }
+
+    .stat-value {
+      font-size: 36px; font-weight: 700;
+      letter-spacing: -0.04em; margin-bottom: 6px;
+    }
+
+    .stat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── OWNERSHIP ───────────────────────────────────── */
+    .ownership-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin: 32px 0;
+    }
+
+    .ownership-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+    }
+
+    .ownership-number {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px;
+    }
+
+    .ownership-title {
+      font-size: 15px; font-weight: 600;
+      color: var(--text); margin-bottom: 10px; line-height: 1.3;
+    }
+
+    .ownership-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+    .ownership-chip {
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 100px;
+      border: 1px solid var(--border); color: var(--text-secondary);
+    }
+
+    /* ── APPROACH CARDS ───────────────────────────────── */
+    .approach-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin: 32px 0;
+    }
+
+    .approach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+    }
+
+    .approach-number {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .approach-title {
+      font-size: 15px; font-weight: 600;
+      color: var(--text); margin-bottom: 10px; line-height: 1.3;
+    }
+
+    .approach-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── SUB-PROJECTS ─────────────────────────────────── */
+    .subproject { margin: 48px 0 0; }
+
+    .subproject-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .subproject-number {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); flex-shrink: 0;
+    }
+
+    .subproject-title {
+      font-size: 20px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--text);
+    }
+
+    /* ── FINDINGS ROW ─────────────────────────────────── */
+    .findings-row {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin: 32px 0;
+    }
+
+    .finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+
+    .finding-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 10px;
+    }
+
+    .finding-value {
+      font-size: 28px; font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: 8px;
+    }
+
+    .finding-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── DELIVERABLES ─────────────────────────────────── */
+    .deliverables { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+    .deliverable-tag {
+      font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary); background: var(--bg-card);
+    }
+
+    /* ── NEXT STEPS ───────────────────────────────────── */
+    .next-steps { list-style: none; margin: 24px 0; }
+
+    .next-steps li {
+      display: flex; gap: 20px;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .next-steps li:last-child { border-bottom: none; }
+
+    .step-number {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.05em;
+      min-width: 24px; padding-top: 1px;
+    }
+
+    .step-text { font-size: 15px; color: var(--text-secondary); line-height: 1.55; }
+
+    /* ── MEDIA ────────────────────────────────────────── */
+    .media-full {
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 40px 0; overflow: hidden; display: block;
+    }
+
+    .media-full img { width: 100%; display: block; }
+
+    .media-caption {
+      font-size: 12px; color: var(--text-muted);
+      text-align: center; margin-top: -28px;
+      margin-bottom: 40px; padding: 0 8px;
+    }
+
+    /* ── BACK ─────────────────────────────────────────── */
+    .back-section {
+      padding: 64px 0; border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all 0.2s;
+    }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+    .btn-primary { background: #fff; color: #000; }
+    .btn-primary:hover { background: #e8e8e8; }
+
+    /* ── FADE IN ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 640px) {
+      .details-row { grid-template-columns: 1fr 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr; }
+      .ownership-grid { grid-template-columns: 1fr; }
+      .findings-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <a href="index.html" class="nav-name">Pierre Bincteux</a>
+      <a href="index.html" class="nav-back">← All work</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="case-meta fade-in">
+        <span class="tag tag-highlight">Shipped · 35,000+ Users</span>
+        <span class="tag">Enterprise UX</span>
+        <span class="tag">Design System</span>
+        <span class="tag">User Research</span>
+        <span class="tag">A/B Testing</span>
+        <span class="tag">Salesforce</span>
+      </div>
+
+      <h1 class="case-title fade-in">Solutions Workspace</h1>
+      <p class="case-subtitle fade-in">
+        Salesforce's AI-driven hub for 35,000 Solution Engineers and sales teams — one place for demos, content, business cases, and activity tracking. I owned design across the platform and its sub-products, maintained a custom design system, and ran the research that shaped key features.
+      </p>
+
+      <div class="details-row fade-in">
+        <div class="detail-cell">
+          <div class="detail-label">My Role</div>
+          <div class="detail-value">Senior UX Designer</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Users</div>
+          <div class="detail-value">35,000+ globally</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Status</div>
+          <div class="detail-value">Shipped & Ongoing</div>
+        </div>
+        <div class="detail-cell">
+          <div class="detail-label">Timeline</div>
+          <div class="detail-value">2023 – 2025</div>
+        </div>
+      </div>
+
+      <div class="hero-image fade-in">
+        <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck%20(1).png" alt="Solutions Workspace — overview" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Context</p>
+      <h2 class="section-heading fade-in">One platform. Multiple products. One design language.</h2>
+      <p class="body-text fade-in">
+        Solutions Workspace is Salesforce's centralised hub for Solution Engineers — combining official content, community resources, demo org tools, activity logging, and an AI-powered Solutions Agent in one interface. At 35,000+ users globally, it's one of the largest internal platforms at Salesforce.
+      </p>
+      <p class="body-text fade-in">
+        What made this project unique as a designer: SW isn't one monolithic product. It's a custom design system — its own palette, typography, and component library — that has to hold together across several distinct sub-products. SE Insights, Activity Editor, and the core SW experience are each their own workstreams, but share the same visual and interaction language I was responsible for maintaining.
+      </p>
+
+      <div class="stat-row fade-in">
+        <div class="stat-cell">
+          <div class="stat-value">35k+</div>
+          <div class="stat-desc">Solution Engineers and sales users across Salesforce globally</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">Custom DS</div>
+          <div class="stat-desc">Design system independent from Salesforce's Lightning Design System</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">Multi</div>
+          <div class="stat-desc">Sub-products sharing one visual language — SE Insights, Activity Editor, SW core</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDIVIDUAL OWNERSHIP -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Individual Ownership</p>
+      <h2 class="section-heading fade-in">What I personally drove</h2>
+      <p class="body-text fade-in">
+        Multi-year engagement across the full SW ecosystem — here's what I owned directly.
+      </p>
+
+      <div class="ownership-grid fade-in">
+
+        <div class="ownership-card">
+          <div class="ownership-number">01</div>
+          <div class="ownership-title">Custom Design System</div>
+          <p class="approach-desc" style="font-size:13px; color:var(--text-muted); line-height:1.6;">Owned and maintained the SW-specific design system — colour palette, typography, and component library — keeping visual consistency across all sub-products.</p>
+          <div class="ownership-chips">
+            <span class="ownership-chip">Colour Palette</span>
+            <span class="ownership-chip">Component Library</span>
+            <span class="ownership-chip">Figma System</span>
+          </div>
+        </div>
+
+        <div class="ownership-card">
+          <div class="ownership-number">02</div>
+          <div class="ownership-title">SE Insights</div>
+          <p class="approach-desc" style="font-size:13px; color:var(--text-muted); line-height:1.6;">Designed the SE Insights dashboard and in-app alert surface — surfacing activity tracking, deal stats, and performance signals directly in the SW homepage.</p>
+          <div class="ownership-chips">
+            <span class="ownership-chip">Dashboard Design</span>
+            <span class="ownership-chip">In-App Alerts</span>
+            <span class="ownership-chip">Data Visualisation</span>
+          </div>
+        </div>
+
+        <div class="ownership-card">
+          <div class="ownership-number">03</div>
+          <div class="ownership-title">Activity Editor</div>
+          <p class="approach-desc" style="font-size:13px; color:var(--text-muted); line-height:1.6;">Designed the Activity Editor app — the logging interface for SEs to track customer calls, workshops, mentoring, and deal activities within the SW ecosystem.</p>
+          <div class="ownership-chips">
+            <span class="ownership-chip">Interaction Design</span>
+            <span class="ownership-chip">Modal Experience</span>
+            <span class="ownership-chip">Activity Flows</span>
+          </div>
+        </div>
+
+        <div class="ownership-card">
+          <div class="ownership-number">04</div>
+          <div class="ownership-title">A/B Testing & User Research</div>
+          <p class="approach-desc" style="font-size:13px; color:var(--text-muted); line-height:1.6;">Led the Confirming Activities A/B test — 2 prototypes, 9 user interviews, structured research synthesis, and findings presented to stakeholders.</p>
+          <div class="ownership-chips">
+            <span class="ownership-chip">A/B Testing</span>
+            <span class="ownership-chip">User Interviews</span>
+            <span class="ownership-chip">Research Synthesis</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PROJECTS -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Sub-Projects</p>
+      <h2 class="section-heading fade-in">Three workstreams, one design system</h2>
+      <p class="body-text fade-in">
+        Each sub-project had its own brief, timeline, and stakeholders — but shared the same design foundations. Here's how I approached each one.
+      </p>
+
+      <!-- SE INSIGHTS -->
+      <div class="subproject fade-in">
+        <div class="subproject-header">
+          <span class="subproject-number">01</span>
+          <span class="subproject-title">SE Insights</span>
+        </div>
+        <p class="body-text">
+          SEs had no clear view of their own performance inside SW — how many hours logged, deal contributions, or whether they were on track. SE Insights brought that data to the surface with an in-app dashboard and contextual alerts, giving SEs a real-time picture of their quarter without leaving the platform.
+        </p>
+        <div class="media-full">
+          <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck.png" alt="Solutions Workspace — homepage UI" />
+        </div>
+        <p class="media-caption">SE Insights — dashboard design and Activity Editor overlay in Figma</p>
+      </div>
+
+      <!-- ACTIVITY EDITOR A/B TEST -->
+      <div class="subproject fade-in">
+        <div class="subproject-header">
+          <span class="subproject-number">02</span>
+          <span class="subproject-title">Activity Editor — Confirming Activities A/B Test</span>
+        </div>
+        <p class="body-text">
+          The Activity Editor needed a rethink — SEs were unclear on how to log and confirm their activities. I ran a structured A/B test with two distinct prototypes: Option A focused on clarity and simplicity; Option B offered more layout flexibility. 9 SEs were interviewed through structured usability sessions.
+        </p>
+        <div class="media-full">
+          <img src="case%20study3/Screenshot%202026-08-24%20at%2015.08.31.png" alt="A/B Test — Prototype Option A" />
+        </div>
+        <p class="media-caption">Prototype Option A — Activity Editor with Suggested Activities tab</p>
+
+
+      </div>
+
+      <!-- SW CORE -->
+      <div class="subproject fade-in">
+        <div class="subproject-header">
+          <span class="subproject-number">03</span>
+          <span class="subproject-title">Solutions Workspace Core</span>
+        </div>
+        <p class="body-text">
+          Beyond sub-products, I contributed to the core SW experience — including the homepage redesign, opportunity selector, and the Modern Interface Refresh that brought the custom design system's updated palette and components to all main surfaces.
+        </p>
+        <div class="media-full">
+          <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck%20(2).png" alt="SW Core — Deals view with opportunity selector" />
+        </div>
+        <p class="media-caption">SW Core — Deals view and opportunity selector modal</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">Approach</p>
+      <h2 class="section-heading fade-in">Research-led. System-aware. Always shipped.</h2>
+
+      <div class="approach-grid fade-in">
+        <div class="approach-card">
+          <div class="approach-number">01</div>
+          <div class="approach-title">Design System First</div>
+          <div class="approach-desc">Every new component or pattern was evaluated for system fit — does it extend what exists, or introduce debt? Consistency at 35k users requires discipline from day one.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">02</div>
+          <div class="approach-title">Research Before Pixels</div>
+          <div class="approach-desc">User interviews, in-app workshops, and structured A/B tests before committing to a direction. Assumptions were treated as hypotheses, not facts.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">03</div>
+          <div class="approach-title">Iterative & Shipped</div>
+          <div class="approach-desc">Unlike vision concepts, this work was live. Features had to be scoped to be buildable — balancing ideal UX with real engineering constraints and quarterly release cycles.</div>
+        </div>
+      </div>
+
+      <p class="section-label fade-in" style="margin-top: 40px;">Key Deliverables</p>
+      <div class="deliverables fade-in">
+        <span class="deliverable-tag">Custom Design System</span>
+        <span class="deliverable-tag">SE Insights Dashboard</span>
+        <span class="deliverable-tag">Activity Editor</span>
+        <span class="deliverable-tag">A/B Testing</span>
+        <span class="deliverable-tag">User Interviews</span>
+        <span class="deliverable-tag">Research Synthesis</span>
+        <span class="deliverable-tag">Modern Interface Refresh</span>
+        <span class="deliverable-tag">Homepage Redesign</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK NAVIGATION -->
+  <section class="back-section">
+    <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+      <a href="index.html" class="btn btn-ghost">← Back to all work</a>
+      <a href="mailto:pbincteux@gmail.com" class="btn btn-primary">Let's talk →</a>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+  </script>
+
+</body>
+</html>

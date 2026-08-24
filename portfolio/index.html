@@ -17,6 +17,7 @@
       --text-muted: rgba(255,255,255,0.45);
       --text-secondary: rgba(255,255,255,0.7);
       --accent: #ffffff;
+      --orange: #E8671A;
       --radius: 12px;
     }
 
@@ -110,7 +111,7 @@
     .hero-label {
       display: inline-block;
       font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
-      color: var(--text-muted); text-transform: uppercase;
+      color: var(--orange); text-transform: uppercase;
       margin-bottom: 24px;
     }
 
@@ -266,6 +267,62 @@
       font-size: 12px; color: var(--text-muted);
     }
 
+    /* ── TESTIMONIALS ────────────────────────────────── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute; top: 20px; left: 24px;
+      font-size: 64px; line-height: 1;
+      color: rgba(255,255,255,0.06);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .testimonial-quote {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 24px;
+      padding-top: 4px;
+    }
+
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%; object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .testimonial-name {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      line-height: 1.3;
+    }
+
+    .testimonial-role {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── ABOUT ───────────────────────────────────────── */
     #about { border-top: 1px solid var(--border); }
 
@@ -303,8 +360,8 @@
     .skill-tag {
       font-size: 12px; font-weight: 500;
       padding: 5px 12px; border-radius: 100px;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
+      border: 1px solid rgba(232,103,26,0.45);
+      color: var(--orange);
     }
 
     /* ── CONTACT ─────────────────────────────────────── */
@@ -423,6 +480,44 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-title">Kind words</span>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-quote">
+            "Pierre is a talented and creative designer. He was able to meet for brief syncs and then create multiple options for concepts that linked back to flow charts and requirements. I really appreciated the multiple options because it meant we could have a discussion and review what we liked/disliked about each concept."
+          </p>
+          <div class="testimonial-author">
+            <img src="Testimonials/Amarleen.png" alt="Amarleen" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Amarleen</div>
+              <div class="testimonial-role">Manager, Field Innovation · Salesforce</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in">
+          <p class="testimonial-quote">
+            "Pierre used AI so wisely to make us save time. He also kept things organised and adds a creative touch in everything he does!"
+          </p>
+          <div class="testimonial-author">
+            <img src="Testimonials/emma.png" alt="Emma" class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Emma</div>
+              <div class="testimonial-role">Manager, Insights &amp; Agentic Transformation · Salesforce</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- WORK -->
   <section id="work">
     <div class="container">
@@ -450,27 +545,39 @@
           </div>
         </a>
 
-        <!-- Case study 2 placeholder -->
-        <a href="#" class="project-card fade-in">
+        <!-- Case study 2 -->
+        <a href="case-study-gss.html" class="project-card fade-in">
           <div class="project-thumb">
             <div class="project-thumb-inner"></div>
+            <img src="case%20study2/mid-fidelity-1.png" alt="Guided Solution Selling" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;" />
           </div>
           <div class="project-body">
-            <div class="project-tag">Coming soon</div>
-            <div class="project-title">Your next case study</div>
-            <div class="project-desc">Add a second project here.</div>
+            <div class="project-tag">Vision Concept · Guided Selling · Salesforce</div>
+            <div class="project-title">Guided Solution Selling — AI-powered recommendations for every deal stage</div>
+            <div class="project-desc">Sellers were manually hunting for the right challenges and plays. I designed an intelligent recommendation engine that surfaces the right content in context — built with AI Studio and Google Stitch.</div>
+            <div class="project-meta">
+              <span>Role: Senior UX Designer</span>
+              <span>2025</span>
+              <span>Wireframes → Prototype</span>
+            </div>
           </div>
         </a>
 
-        <!-- Case study 3 placeholder -->
-        <a href="#" class="project-card fade-in">
+        <!-- Case study 3 -->
+        <a href="case-study-sw.html" class="project-card fade-in">
           <div class="project-thumb">
             <div class="project-thumb-inner"></div>
+            <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck%20(1).png" alt="Solutions Workspace" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0.85;" />
           </div>
           <div class="project-body">
-            <div class="project-tag">Coming soon</div>
-            <div class="project-title">Your next case study</div>
-            <div class="project-desc">Add a third project here.</div>
+            <div class="project-tag">Shipped · Design System · Enterprise UX · Salesforce</div>
+            <div class="project-title">Solutions Workspace — Custom design system and multi-product UX for 35,000+ users</div>
+            <div class="project-desc">SE Insights, Activity Editor, A/B testing, user research, and a custom design system — all shipping inside Salesforce's internal platform for Solution Engineers.</div>
+            <div class="project-meta">
+              <span>Role: Senior UX Designer</span>
+              <span>2023–2025</span>
+              <span>Research → Shipped</span>
+            </div>
           </div>
         </a>
 
@@ -489,7 +596,7 @@
             I'm a Senior Experience Designer at Salesforce in Dublin — product-first, research-led, and a strong believer that great enterprise UX is just as important as consumer UX (it's just harder to pull off).
           </p>
           <p class="about-body">
-            I started in visual and brand design at early-stage startups in Lyon and Paris, then moved into enterprise UX at Salesforce, where I've spent 7+ years owning strategy and end-to-end design for complex seller platforms. I'm also an internal champion of AI-assisted design — I've piloted Gemini, Claude, and Cursor across team workflows and led offsite workshops on how to use them effectively.
+            I started in visual and brand design at early-stage startups in Lyon and Paris 🇫🇷, then moved into enterprise UX at Salesforce, where I've spent 7+ years owning strategy and end-to-end design for complex seller platforms. I'm also an internal champion of AI-assisted design — I've piloted Gemini, Claude, and Cursor across team workflows and led offsite workshops on how to use them effectively.
           </p>
           <div class="skills-row">
             <span class="skill-tag">User Research</span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Q2C Deal Optimization — Pierre Bincteux</title>
+  <title>Guided Solution Selling — Pierre Bincteux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -121,22 +121,6 @@
       color: var(--text);
     }
 
-    /* ── HERO IMAGE ───────────────────────────────────── */
-    .hero-image {
-      width: 100%; aspect-ratio: 16/9;
-      background: #111;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin: 48px 0 0;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); font-size: 13px;
-      overflow: hidden;
-    }
-
-    .hero-image img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-
     /* ── CONTENT ──────────────────────────────────────── */
     .content-section {
       padding: 64px 0;
@@ -158,7 +142,6 @@
       font-size: 16px; color: var(--text-secondary);
       line-height: 1.8; margin-bottom: 20px;
     }
-
     .body-text:last-child { margin-bottom: 0; }
 
     .hmw {
@@ -235,212 +218,6 @@
       font-size: 13px; color: var(--text-muted); line-height: 1.6;
     }
 
-    /* ── DELIVERABLES ─────────────────────────────────── */
-    .deliverables {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
-    }
-
-    .deliverable-tag {
-      font-size: 13px; font-weight: 500;
-      padding: 8px 16px; border-radius: 8px;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      background: var(--bg-card);
-    }
-
-    /* ── NEXT STEPS LIST ──────────────────────────────── */
-    .next-steps { list-style: none; margin: 24px 0; }
-
-    .next-steps li {
-      display: flex; gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: baseline;
-    }
-
-    .next-steps li:last-child { border-bottom: none; }
-
-    .step-number {
-      font-size: 12px; font-weight: 600;
-      color: var(--text-muted); letter-spacing: 0.05em;
-      min-width: 24px; padding-top: 1px;
-    }
-
-    .step-text {
-      font-size: 15px; color: var(--text-secondary); line-height: 1.55;
-    }
-
-    /* ── BACK BUTTON ──────────────────────────────────── */
-    .back-section {
-      padding: 64px 0;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 20px; border-radius: 8px;
-      font-size: 14px; font-weight: 500;
-      text-decoration: none; transition: all 0.2s;
-    }
-
-    .btn-ghost {
-      background: transparent; color: var(--text-secondary);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
-
-    .btn-primary {
-      background: #fff; color: #000;
-    }
-    .btn-primary:hover { background: #e8e8e8; }
-
-    /* ── FADE IN ──────────────────────────────────────── */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* ── MEDIA ────────────────────────────────────────── */
-    .media-full {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin: 40px 0;
-      overflow: hidden;
-      display: block;
-    }
-
-    .media-full img {
-      width: 100%; display: block;
-    }
-
-    .media-caption {
-      font-size: 12px; color: var(--text-muted);
-      text-align: center; margin-top: -28px;
-      margin-bottom: 40px; padding: 0 8px;
-    }
-
-    /* ── VIDEO ────────────────────────────────────────── */
-    .video-wrap {
-      position: relative;
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin: 40px 0;
-      overflow: hidden;
-      background: #000;
-      cursor: pointer;
-    }
-
-    .video-wrap video {
-      width: 100%; display: block;
-    }
-
-    .video-play-overlay {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .video-play-overlay.hidden { display: none; }
-
-    .play-circle {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.95);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 48px rgba(0,0,0,0.55);
-      transition: transform 0.2s;
-    }
-
-    .video-play-overlay:hover .play-circle { transform: scale(1.1); }
-
-    .play-circle svg { width: 28px; height: 28px; margin-left: 4px; }
-
-    /* ── BEFORE / AFTER SLIDER ────────────────────────── */
-    .ba-wrap {
-      position: relative;
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin: 40px 0;
-      overflow: hidden;
-      cursor: ew-resize;
-      user-select: none;
-    }
-
-    .ba-before {
-      display: block;
-      width: 100%;
-    }
-
-    .ba-after-clip {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      clip-path: inset(0 50% 0 0);
-    }
-
-    .ba-after-clip img {
-      display: block;
-      width: 100%;
-    }
-
-    .ba-handle {
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      background: #fff;
-      pointer-events: none;
-    }
-
-    .ba-handle::before, .ba-handle::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px;
-      background: #fff;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .ba-handle::before { top: 50%; margin-top: -18px; }
-
-    .ba-knob {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px; height: 40px;
-      background: #fff;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    }
-
-    .ba-knob svg {
-      width: 16px; height: 16px;
-    }
-
-    .ba-label {
-      position: absolute;
-      bottom: 16px;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 100px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      color: #fff;
-    }
-
-    .ba-label-before { left: 16px; }
-    .ba-label-after { right: 16px; }
-
     /* ── OWNERSHIP ───────────────────────────────────── */
     .ownership-grid {
       display: grid;
@@ -494,12 +271,185 @@
       color: var(--text-secondary);
     }
 
+    /* ── DELIVERABLES ─────────────────────────────────── */
+    .deliverables {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+    }
+
+    .deliverable-tag {
+      font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    /* ── NEXT STEPS LIST ──────────────────────────────── */
+    .next-steps { list-style: none; margin: 24px 0; }
+
+    .next-steps li {
+      display: flex; gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .next-steps li:last-child { border-bottom: none; }
+
+    .step-number {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.05em;
+      min-width: 24px; padding-top: 1px;
+    }
+
+    .step-text {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.55;
+    }
+
+    /* ── TESTIMONIAL ──────────────────────────────────── */
+    .testimonial {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      position: absolute; top: 24px; left: 36px;
+      font-size: 72px; line-height: 1;
+      color: rgba(255,255,255,0.07);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .testimonial-quote {
+      font-size: 17px; font-weight: 400;
+      line-height: 1.75; color: var(--text);
+      margin-bottom: 28px;
+      padding-top: 8px;
+    }
+
+    .testimonial-author {
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .testimonial-role {
+      font-size: 13px; color: var(--text-muted);
+    }
+
+    /* ── MEDIA ────────────────────────────────────────── */
+    .media-full {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 40px 0;
+      overflow: hidden;
+      display: block;
+    }
+
+    .media-full img {
+      width: 100%; display: block;
+    }
+
+    .media-caption {
+      font-size: 12px; color: var(--text-muted);
+      text-align: center; margin-top: -28px;
+      margin-bottom: 40px; padding: 0 8px;
+    }
+
+    /* ── VIDEO ────────────────────────────────────────── */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 48px 0 0;
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .video-wrap video {
+      width: 100%; display: block;
+    }
+
+    .video-play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .video-play-overlay.hidden { display: none; }
+
+    .play-circle {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.55);
+      transition: transform 0.2s;
+    }
+
+    .video-play-overlay:hover .play-circle { transform: scale(1.1); }
+
+    .play-circle svg { width: 28px; height: 28px; margin-left: 4px; }
+
+    /* ── BACK BUTTON ──────────────────────────────────── */
+    .back-section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all 0.2s;
+    }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+    .btn-primary {
+      background: #fff; color: #000;
+    }
+    .btn-primary:hover { background: #e8e8e8; }
+
+    /* ── FADE IN ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 640px) {
       .details-row { grid-template-columns: 1fr 1fr; }
       .approach-grid { grid-template-columns: 1fr; }
       .stat-row { grid-template-columns: 1fr; }
       .ownership-grid { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .testimonial { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -519,14 +469,14 @@
       <div class="case-meta fade-in">
         <span class="tag tag-highlight">Vision Concept</span>
         <span class="tag">Enterprise UX</span>
-        <span class="tag">B2B Sales</span>
+        <span class="tag">Guided Selling</span>
         <span class="tag">Salesforce</span>
-        <span class="tag">Agentic Automation</span>
+        <span class="tag">AI-Powered</span>
       </div>
 
-      <h1 class="case-title fade-in">Q2C Deal Optimization</h1>
+      <h1 class="case-title fade-in">Guided Solution Selling</h1>
       <p class="case-subtitle fade-in">
-        Salesforce sellers were spending hours wrestling with spreadsheets, approvals, and fragmented tools to close a single deal. We designed a next-generation proposal experience — end-to-end, agentic-powered, and legal-ready — from scratch.
+        Salesforce sellers were manually hunting for the right challenges, plays, and stories to close a deal. We designed an AI-powered recommendation engine that surfaces the right content at the right stage — instantly.
       </p>
 
       <div class="details-row fade-in">
@@ -536,7 +486,7 @@
         </div>
         <div class="detail-cell">
           <div class="detail-label">Team</div>
-          <div class="detail-value">Principal Experience Architect, 2 Directors</div>
+          <div class="detail-value">2 Managers</div>
         </div>
         <div class="detail-cell">
           <div class="detail-label">Status</div>
@@ -544,13 +494,13 @@
         </div>
         <div class="detail-cell">
           <div class="detail-label">Year</div>
-          <div class="detail-value">2026</div>
+          <div class="detail-value">2025</div>
         </div>
       </div>
 
       <div class="video-wrap fade-in" id="video-container">
-        <video id="case-video" preload="metadata" poster="q2c-prototype.png">
-          <source src="q2c-video.mp4" type="video/mp4" />
+        <video id="case-video" preload="metadata" poster="case%20study2/mid-fidelity-1.png">
+          <source src="case%20study2/GSS%20demo.mp4" type="video/mp4" />
         </video>
         <div class="video-play-overlay" id="video-play-overlay">
           <div class="play-circle">
@@ -567,12 +517,12 @@
   <section class="content-section">
     <div class="container">
       <p class="section-label fade-in">Context</p>
-      <h2 class="section-heading fade-in">Closing enterprise deals is broken</h2>
+      <h2 class="section-heading fade-in">Sellers shouldn't have to hunt for the right story</h2>
       <p class="body-text fade-in">
-        At Salesforce, the Quote-to-Cash (Q2C) process is the critical path from "customer interested" to "contract signed." But for Account Executives, it had become a maze of manual steps, custom spreadsheets, fragmented approvals, and legal back-and-forth — before a single deal could close.
+        Guided Solution Selling is part of Salesforce's internal initiative to make sellers more effective at every deal stage. The pain was clear: Account Executives were spending valuable time manually searching for relevant customer challenges, sales plays, and success stories — a slow, error-prone process that eroded confidence and deal velocity.
       </p>
       <p class="body-text fade-in">
-        This project sat within Salesforce's internal Q2C Innovation initiative, working directly inside Org62 — Salesforce's own instance of Salesforce — at the Opportunity level. The goal: design a next-generation experience that sellers would actually want to use.
+        This project lived inside Org62 — Salesforce's own instance of Salesforce — at the Opportunity level. The goal: replace manual configuration friction with intelligent, data-driven recommendations that adapt to each deal in real time.
       </p>
     </div>
   </section>
@@ -583,48 +533,61 @@
       <p class="section-label fade-in">Individual Ownership</p>
       <h2 class="section-heading fade-in">What I personally drove</h2>
       <p class="body-text fade-in">
-        This was a collaborative project — but here's what I owned end-to-end, from blank canvas to final deliverable.
+        Three-person team, end-to-end — here's what I owned from blank canvas to demo-ready.
       </p>
 
       <div class="ownership-grid fade-in">
 
         <div class="ownership-card">
           <div class="ownership-number">01</div>
-          <div class="ownership-title">Vision Crafting Workshop</div>
-          <div class="ownership-sub-row">
-            <span class="ownership-phase">Prep</span>
-            <div class="ownership-chips">
-              <span class="ownership-chip">Fast Diagram</span>
-              <span class="ownership-chip">Swim Lane Process Diagram</span>
-            </div>
-          </div>
-          <div class="ownership-sub-row">
-            <span class="ownership-phase">Delivery</span>
-            <div class="ownership-chips">
-              <span class="ownership-chip">Co-hosted</span>
-              <span class="ownership-chip">Facilitated</span>
-            </div>
-          </div>
+          <div class="ownership-title">Wireframes & Flow Diagrams</div>
+          <p class="approach-desc">Mapped the full recommendation logic across modalities — new opportunity, partial data, stage changes — into structured lo-fi flows before any visual polish.</p>
         </div>
 
         <div class="ownership-card">
           <div class="ownership-number">02</div>
-          <div class="ownership-title">Wireframes</div>
-          <p class="approach-desc">Translated workshop outputs into structured lo-fi flows — mapping the full end-to-end proposal journey before committing to visual design.</p>
+          <div class="ownership-title">Mid-Fidelity Designs</div>
+          <p class="approach-desc">Brought the flows to life in Figma — designed the Guided Selling modal, recommendation panels, and filtering system across all deal stages.</p>
         </div>
 
         <div class="ownership-card">
           <div class="ownership-number">03</div>
           <div class="ownership-title">AI Studio Prototype</div>
-          <p class="approach-desc">Built the fully interactive prototype in AI Studio — agentic-powered, clickable end-to-end, ready for stakeholder demos and seller validation.</p>
+          <div class="ownership-sub-row">
+            <span class="ownership-phase">Built with</span>
+            <div class="ownership-chips">
+              <span class="ownership-chip">AI Studio</span>
+              <span class="ownership-chip">Google Stitch</span>
+            </div>
+          </div>
         </div>
 
         <div class="ownership-card">
           <div class="ownership-number">04</div>
-          <div class="ownership-title">2-Minute Video Walkthrough</div>
-          <p class="approach-desc">Wrote the story, recorded the narrative, and added voiceover — a self-contained demo that communicates the vision without needing a live presenter.</p>
+          <div class="ownership-title">Demo Video Walkthrough</div>
+          <p class="approach-desc">Produced the full GSS demo — scripted the narrative, recorded the walkthrough, and edited for stakeholder presentation.</p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="content-section">
+    <div class="container">
+      <p class="section-label fade-in">What the team said</p>
+      <h2 class="section-heading fade-in">Built with people who care about the craft</h2>
+
+      <div class="testimonial fade-in">
+        <p class="testimonial-quote">
+          "Pierre is a talented and creative designer. He was able to meet for brief syncs and then create multiple options for concepts that linked back to flow charts and requirements. I really appreciated the multiple options because it meant we could have a discussion and review what we liked/disliked about each concept."
+        </p>
+        <div class="testimonial-author">
+          <img src="Testimonials/Amarleen.png" alt="" class="testimonial-avatar" />
+          <div>
+            <div class="testimonial-role">Manager, Field Innovation · Salesforce</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -633,28 +596,28 @@
   <section class="content-section">
     <div class="container">
       <p class="section-label fade-in">The Problem</p>
-      <h2 class="section-heading fade-in">Too much red tape to close deals</h2>
+      <h2 class="section-heading fade-in">Manual configuration slows every deal</h2>
       <p class="body-text fade-in">
-        Sellers were starting from complex, multi-scenario proposals — different pricing configurations, discount levels, contract terms — and had to manually reconcile all of it before getting to a legal-ready contract. Each step introduced friction, delay, and risk of error.
+        Sellers were starting each opportunity from scratch — manually selecting customer challenges, matching sales plays, and finding relevant success stories. No intelligent surface, no context-awareness, no time savings. Every field was a decision that slowed them down.
       </p>
 
       <div class="hmw fade-in">
         <p class="hmw-label">How might we</p>
-        <p class="hmw-text">"How might we help sellers start from a complex, multi-scenario proposal to create an optimally configured and legal-ready contract swiftly — in a way that increases customer trust and reduces attrition?"</p>
+        <p class="hmw-text">"How might we leverage intelligent, data-driven recommendations to instantly map customer challenges directly into an optimally configured, legally compliant contract layout — guaranteeing full visibility and swift execution?"</p>
       </div>
 
       <div class="stat-row fade-in">
         <div class="stat-cell">
-          <div class="stat-value">Multi</div>
-          <div class="stat-desc">Scenario proposals — sellers managing multiple pricing configurations simultaneously</div>
+          <div class="stat-value">Manual</div>
+          <div class="stat-desc">Every challenge, play, and story selected by hand — no intelligence, no context</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-value">Manual</div>
-          <div class="stat-desc">Every approval, discount check, and legal term managed in custom spreadsheets</div>
+          <div class="stat-value">3 layers</div>
+          <div class="stat-desc">Challenges, Sales Plays, Success Stories — all disconnected from deal context</div>
         </div>
         <div class="stat-cell">
           <div class="stat-value">0→1</div>
-          <div class="stat-desc">Greenfield — no existing unified experience to build on, only fragmented tools</div>
+          <div class="stat-desc">No existing recommendation layer in Org62 — built entirely from scratch</div>
         </div>
       </div>
     </div>
@@ -664,43 +627,42 @@
   <section class="content-section">
     <div class="container">
       <p class="section-label fade-in">Approach</p>
-      <h2 class="section-heading fade-in">Designing the future of work through rigorous UX practice</h2>
+      <h2 class="section-heading fade-in">Solution-first. Data-driven. Context-aware.</h2>
       <p class="body-text fade-in">
-        Rather than starting with wireframes, we started with the desired end-state: a legal-ready contract. Then we worked backward — identifying every data point, decision, and approval required to get there. This reverse-engineering approach kept us anchored to real seller outcomes, not assumptions.
+        Rather than designing around existing UI patterns, we started from the seller's desired outcome: the right content, at the right deal stage, with the least friction. Then we mapped backward — identifying every signal (stage, industry, motion, persona) that should influence what gets surfaced.
       </p>
 
       <div class="approach-grid fade-in">
         <div class="approach-card">
           <div class="approach-number">01</div>
-          <div class="approach-title">Reverse Engineer Solution & Vision</div>
-          <div class="approach-desc">Started with the end-state — a legal-ready contract — and mapped backward to surface every required input, decision point, and approval along the way.</div>
+          <div class="approach-title">Map the recommendation logic</div>
+          <div class="approach-desc">Reverse-engineered the ideal output — a legally compliant, fully configured opportunity — and mapped what data inputs were needed to get there automatically.</div>
         </div>
         <div class="approach-card">
           <div class="approach-number">02</div>
-          <div class="approach-title">UX Workshop</div>
-          <div class="approach-desc">Facilitated a collaborative deep-dive with stakeholders and product leads to align on seller pain points, workflow requirements, and priorities before touching Figma.</div>
+          <div class="approach-title">Design for all modalities</div>
+          <div class="approach-desc">Handled three distinct states: brand new opportunity (no data), partial information, and opportunity with changing stage — each requiring a different recommendation strategy.</div>
         </div>
         <div class="approach-card">
           <div class="approach-number">03</div>
-          <div class="approach-title">Rapid Prototyping</div>
-          <div class="approach-desc">Ran iterative design cycles — bringing two separate quote visions into one unified end-to-end journey — refining in real-time with stakeholder feedback.</div>
+          <div class="approach-title">Build & validate fast</div>
+          <div class="approach-desc">Used AI Studio + Google Stitch to build a working demo significantly faster than traditional prototyping — enabling real concept validation with stakeholders.</div>
         </div>
       </div>
 
       <div class="media-full fade-in">
-        <img src="q2c-workshop.png" alt="UX Workshop session" />
+        <img src="case%20study2/wireframe.png" alt="Guided Solution Selling — wireframe flows" />
       </div>
-      <p class="media-caption fade-in">Collaborative UX workshop — aligning stakeholders on seller pain points and workflow requirements</p>
+      <p class="media-caption fade-in">Wireframe flows — recommendation logic mapped across all deal stages and modalities</p>
 
       <p class="section-label fade-in" style="margin-top: 40px;">Key Deliverables</p>
       <div class="deliverables fade-in">
-        <span class="deliverable-tag">Discovery & Seller Research</span>
-        <span class="deliverable-tag">1:1 AE Interviews</span>
-        <span class="deliverable-tag">Stakeholder Workshops</span>
-        <span class="deliverable-tag">Journey Mapping</span>
+        <span class="deliverable-tag">Flow Diagrams</span>
         <span class="deliverable-tag">Wireframes</span>
-        <span class="deliverable-tag">Seller Validation & Testing</span>
-        <span class="deliverable-tag">Interactive Prototype</span>
+        <span class="deliverable-tag">Mid-Fidelity Designs</span>
+        <span class="deliverable-tag">Recommendation Engine UX</span>
+        <span class="deliverable-tag">AI Studio Prototype</span>
+        <span class="deliverable-tag">Demo Video</span>
       </div>
     </div>
   </section>
@@ -709,40 +671,23 @@
   <section class="content-section">
     <div class="container">
       <p class="section-label fade-in">The Solution</p>
-      <h2 class="section-heading fade-in">A unified proposal journey — powered by agentic automation</h2>
+      <h2 class="section-heading fade-in">AI-powered recommendations, surfaced in context</h2>
       <p class="body-text fade-in">
-        We designed the Deal Optimization experience as an app living inside Org62 at the Opportunity level — covering the complete end-to-end proposal journey in one place. The key shift: every manual task that previously required spreadsheets or back-and-forth with Deal Desk was replaced with intelligent, agentic automation.
-      </p>
-
-      <!-- Before / After slider -->
-      <div class="ba-wrap fade-in" id="ba-slider">
-        <img class="ba-before" src="q2c-after.png" alt="Before — wireframe" />
-        <div class="ba-after-clip" id="ba-clip">
-          <img src="q2c-before.png" alt="After — AI prototype" />
-        </div>
-        <div class="ba-handle" id="ba-handle">
-          <div class="ba-knob">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 3L2 8l3 5M11 3l3 5-3 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-        <span class="ba-label ba-label-before">Before</span>
-        <span class="ba-label ba-label-after">After</span>
-      </div>
-      <p class="media-caption fade-in">Drag to compare — wireframe exploration vs. final AI-powered prototype</p>
-
-      <p class="body-text fade-in">
-        Sellers can now create and compare multiple pricing scenarios in parallel, see a real-time Deal Score (0–100) reflecting approval probability and margin impact, and get automatic Approval Routing Impact previews — all before submitting to Legal.
+        We designed a Guided Selling modal that lives inside the Salesforce Opportunity page — showing recommended Challenges, Sales Plays, Success Stories, and Products filtered by industry, motion, persona, and region. Sellers can add the right content in seconds instead of minutes.
       </p>
       <p class="body-text fade-in">
-        The experience was designed with Salesforce's Lightning Design System constraints while pushing for a significantly more capable and intuitive interface than sellers had ever had access to internally.
+        The experience adapts to deal context: a brand-new opportunity surfaces generic high-signal recommendations, while a later-stage opportunity with known challenges gets hyper-targeted plays. Stage changes trigger a smart re-recommendation prompt — keeping sellers aligned at every step.
       </p>
 
       <div class="media-full fade-in">
-        <img src="q2c-prototype.png" alt="AI Studio prototype detail" />
+        <img src="case%20study2/mid-fidelity-1.png" alt="Mid-fidelity — Guided Selling across deal stages" />
       </div>
-      <p class="media-caption fade-in">AI Studio interactive prototype — multi-scenario proposal view with real-time Deal Score</p>
+      <p class="media-caption fade-in">Mid-fidelity — recommendation flows across Discovery, Solution, and Negotiate stages</p>
+
+      <div class="media-full fade-in">
+        <img src="case%20study2/mid-fidelity-2.png" alt="Mid-fidelity — Guided Selling modal detail" />
+      </div>
+      <p class="media-caption fade-in">Mid-fidelity — Guided Selling modal with tabbed navigation and filter panel</p>
 
     </div>
   </section>
@@ -751,26 +696,22 @@
   <section class="content-section">
     <div class="container">
       <p class="section-label fade-in">What's Next</p>
-      <h2 class="section-heading fade-in">From vision to MVP</h2>
+      <h2 class="section-heading fade-in">From vision to tested feature</h2>
       <p class="body-text fade-in">
-        This was a vision concept — intentionally designed to show what's possible before scoping down to what's buildable. The next phase was defined around four priorities:
+        This was a vision concept designed to demonstrate what intelligent, context-aware selling could look like inside Org62. The next phase was defined around three priorities:
       </p>
       <ul class="next-steps fade-in">
         <li>
           <span class="step-number">01</span>
-          <span class="step-text">Test the solution with the target audience — validate the concept with real AEs in structured usability sessions.</span>
+          <span class="step-text">Validate with real sellers — run structured usability sessions with Account Executives to test recommendation relevance and modal interaction patterns.</span>
         </li>
         <li>
           <span class="step-number">02</span>
-          <span class="step-text">Define MVP and iterations based on effort-to-value — work with engineering to scope the highest-impact features for a first release.</span>
+          <span class="step-text">Scope the MVP — work with engineering to prioritize which recommendation types (Challenges first, or Plays?) and which deal stages to target in a first release.</span>
         </li>
         <li>
           <span class="step-number">03</span>
-          <span class="step-text">Define success metrics and governance — align on what "better" looks like: time-to-contract, approval cycle reduction, seller satisfaction.</span>
-        </li>
-        <li>
-          <span class="step-number">04</span>
-          <span class="step-text">Identify the next area to dig into — use research learnings to prioritize which seller pain point to tackle next.</span>
+          <span class="step-text">Define success metrics — align on what "better" looks like: reduction in manual data entry time, increase in recommendation adoption rate, deal velocity improvement.</span>
         </li>
       </ul>
     </div>
@@ -802,29 +743,6 @@
       { threshold: 0.1 }
     )
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
-
-    // Before / After slider
-    const slider  = document.getElementById('ba-slider')
-    const clip    = document.getElementById('ba-clip')
-    const handle  = document.getElementById('ba-handle')
-    let dragging  = false
-
-    function setPos(clientX) {
-      const rect = slider.getBoundingClientRect()
-      let pct = (clientX - rect.left) / rect.width
-      pct = Math.max(0.02, Math.min(0.98, pct))
-      const pctStr = (pct * 100).toFixed(2) + '%'
-      const rightPct = ((1 - pct) * 100).toFixed(2) + '%'
-      clip.style.clipPath = `inset(0 ${rightPct} 0 0)`
-      handle.style.left   = pctStr
-    }
-
-    slider.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX) })
-    slider.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX) }, { passive: true })
-    window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX) })
-    window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX) }, { passive: true })
-    window.addEventListener('mouseup',  () => dragging = false)
-    window.addEventListener('touchend', () => dragging = false)
   </script>
 
 </body>
