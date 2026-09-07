@@ -248,17 +248,19 @@
       background: var(--bg-card);
     }
 
-    /* ── NEXT STEPS LIST ──────────────────────────────── */
-    .next-steps { list-style: none; margin: 24px 0; }
+    /* ── OUTCOMES LIST ────────────────────────────────── */
+    .outcomes-list { list-style: none; margin: 24px 0; }
 
-    .next-steps li {
+    .outcomes-list li {
       display: flex; gap: 20px;
       padding: 20px 0;
       border-bottom: 1px solid var(--border);
       align-items: baseline;
     }
 
-    .next-steps li:last-child { border-bottom: none; }
+    .outcomes-list li:last-child { border-bottom: none; }
+
+    .outcomes-list .step-number { color: var(--orange); }
 
     .step-number {
       font-size: 12px; font-weight: 600;
@@ -398,19 +400,6 @@
       pointer-events: none;
     }
 
-    .ba-handle::before, .ba-handle::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px; height: 36px;
-      background: #fff;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .ba-handle::before { top: 50%; margin-top: -18px; }
-
     .ba-knob {
       position: absolute;
       top: 50%; left: 50%;
@@ -509,7 +498,7 @@
   <nav>
     <div class="inner">
       <a href="index.html" class="nav-name">Pierre Bincteux</a>
-      <a href="index.html" class="nav-back">← All work</a>
+      <a href="index.html#work" class="nav-back">← All work</a>
     </div>
   </nav>
 
@@ -716,9 +705,9 @@
 
       <!-- Before / After slider -->
       <div class="ba-wrap fade-in" id="ba-slider">
-        <img class="ba-before" src="q2c-after.png" alt="Before — wireframe" />
+        <img class="ba-before" src="q2c-after.png" alt="After — AI prototype" />
         <div class="ba-after-clip" id="ba-clip">
-          <img src="q2c-before.png" alt="After — AI prototype" />
+          <img src="q2c-before.png" alt="Before — wireframe" />
         </div>
         <div class="ba-handle" id="ba-handle">
           <div class="ba-knob">
@@ -747,30 +736,26 @@
     </div>
   </section>
 
-  <!-- NEXT STEPS -->
+  <!-- ESTIMATED OUTCOMES -->
   <section class="content-section">
     <div class="container">
-      <p class="section-label fade-in">What's Next</p>
-      <h2 class="section-heading fade-in">From vision to MVP</h2>
+      <p class="section-label fade-in">Estimated Outcomes</p>
+      <h2 class="section-heading fade-in">Faster alignment, funded follow-through</h2>
       <p class="body-text fade-in">
-        This was a vision concept — intentionally designed to show what's possible before scoping down to what's buildable. The next phase was defined around four priorities:
+        The concept hasn't shipped, so these are estimates measured against how the team worked before the sprint — not shipped-product metrics.
       </p>
-      <ul class="next-steps fade-in">
+      <ul class="outcomes-list fade-in">
         <li>
           <span class="step-number">01</span>
-          <span class="step-text">Test the solution with the target audience — validate the concept with real AEs in structured usability sessions.</span>
+          <span class="step-text">Cut alignment time from 4+ weeks to just 3 days.</span>
         </li>
         <li>
           <span class="step-number">02</span>
-          <span class="step-text">Define MVP and iterations based on effort-to-value — work with engineering to scope the highest-impact features for a first release.</span>
+          <span class="step-text">Increased cross-functional collaboration, with participants positively reporting on clarity and involvement post-sprint.</span>
         </li>
         <li>
           <span class="step-number">03</span>
-          <span class="step-text">Define success metrics and governance — align on what "better" looks like: time-to-contract, approval cycle reduction, seller satisfaction.</span>
-        </li>
-        <li>
-          <span class="step-number">04</span>
-          <span class="step-text">Identify the next area to dig into — use research learnings to prioritize which seller pain point to tackle next.</span>
+          <span class="step-text">1 month later, several sprint outcomes had evolved into funded initiatives, endorsed at the VP level.</span>
         </li>
       </ul>
     </div>
@@ -779,7 +764,7 @@
   <!-- BACK NAVIGATION -->
   <section class="back-section">
     <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-      <a href="index.html" class="btn btn-ghost">← Back to all work</a>
+      <a href="index.html#work" class="btn btn-ghost">← Back to all work</a>
       <a href="mailto:pbincteux@gmail.com" class="btn btn-primary">Let's talk →</a>
     </div>
   </section>

@@ -21,7 +21,8 @@
       --radius: 12px;
     }
 
-    html { scroll-behavior: smooth; }
+    /* keeps anchor targets clear of the fixed nav */
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
     body {
       background: var(--bg);
@@ -195,13 +196,6 @@
       letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--text-muted);
     }
-
-    .section-link {
-      font-size: 13px; color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .section-link:hover { color: var(--text); }
 
     .projects-grid {
       display: grid;
@@ -427,6 +421,16 @@
       .about-photo { aspect-ratio: 4/3; }
     }
   </style>
+
+  <script>
+    // Arriving on a #hash lands instantly — smooth scrolling is for in-page clicks only
+    if (location.hash) {
+      document.documentElement.style.scrollBehavior = 'auto'
+      addEventListener('load', () => requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = ''
+      }))
+    }
+  </script>
 </head>
 <body>
 
@@ -502,7 +506,7 @@
             <img src="Testimonials/pascal.png" alt="Pascal" class="testimonial-avatar" />
             <div>
               <div class="testimonial-name">Pascal</div>
-              <div class="testimonial-role">Experience Strategist · Salesforce</div>
+              <div class="testimonial-role">Principal Architect · Salesforce</div>
             </div>
           </div>
         </div>
@@ -542,7 +546,6 @@
     <div class="container">
       <div class="section-header">
         <span class="section-title">Selected Work</span>
-        <a href="#" class="section-link">All projects →</a>
       </div>
       <div class="projects-grid">
 
