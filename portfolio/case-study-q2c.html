@@ -5,47 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Q2C Deal Optimization — Pierre Bincteux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.min.css" />
+  <link rel="stylesheet" href="theme.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #080808;
-      --bg-card: #111111;
-      --border: rgba(255,255,255,0.08);
-      --text: #ffffff;
-      --text-muted: rgba(255,255,255,0.45);
-      --text-secondary: rgba(255,255,255,0.7);
-      --orange: #E8671A;
-      --radius: 12px;
-    }
+    /* tokens: theme.css */
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      font-family: 'Geist Sans', 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-    .container-wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
+    .container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x); }
 
     /* ── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 0;
-      background: rgba(8,8,8,0.85);
-      backdrop-filter: blur(12px);
+      padding: 14px 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     nav .inner {
-      max-width: 900px; margin: 0 auto; padding: 0 24px;
+      max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x);
       display: flex; justify-content: space-between; align-items: center;
     }
 
@@ -73,7 +69,7 @@
     }
 
     /* ── HERO ─────────────────────────────────────────── */
-    #hero { padding: 140px 0 64px; }
+    #hero { padding: 156px 0 72px; }
 
     .case-meta {
       display: flex; gap: 8px; flex-wrap: wrap;
@@ -89,19 +85,19 @@
     }
 
     .tag-highlight {
-      border-color: rgba(232,103,26,0.45);
+      border-color: var(--orange-border);
       color: var(--orange);
     }
 
     .case-title {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700; letter-spacing: -0.03em;
-      line-height: 1.07; margin-bottom: 20px;
+      font-size: clamp(36px, 5.2vw, 56px);
+      font-weight: 600; letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: 20px;
     }
 
     .case-subtitle {
       font-size: 18px; color: var(--text-secondary);
-      line-height: 1.65; max-width: 600px;
+      line-height: 1.65; max-width: 720px;
     }
 
     /* ── HERO DETAILS ROW ─────────────────────────────── */
@@ -135,7 +131,7 @@
     /* ── HERO IMAGE ───────────────────────────────────── */
     .hero-image {
       width: 100%; aspect-ratio: 16/9;
-      background: #111;
+      background: var(--thumb-bg);
       border-radius: var(--radius);
       border: 1px solid var(--border);
       margin: 48px 0 0;
@@ -150,7 +146,7 @@
 
     /* ── CONTENT ──────────────────────────────────────── */
     .content-section {
-      padding: 64px 0;
+      padding: 80px 0;
       border-top: 1px solid var(--border);
     }
 
@@ -161,7 +157,7 @@
     }
 
     .section-heading {
-      font-size: 26px; font-weight: 700;
+      font-size: 26px; font-weight: 600;
       letter-spacing: -0.025em; margin-bottom: 20px;
     }
 
@@ -175,7 +171,7 @@
     .hmw {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-left: 3px solid rgba(255,255,255,0.3);
+      border-left: 3px solid var(--hmw-accent);
       border-radius: var(--radius);
       padding: 28px 32px;
       margin: 32px 0;
@@ -209,7 +205,7 @@
     }
 
     .stat-value {
-      font-size: 36px; font-weight: 700;
+      font-size: 36px; font-weight: 600;
       letter-spacing: -0.04em; margin-bottom: 6px;
     }
 
@@ -227,6 +223,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 28px 24px;
     }
 
@@ -253,7 +250,7 @@
 
     .deliverable-tag {
       font-size: 13px; font-weight: 500;
-      padding: 8px 16px; border-radius: 8px;
+      padding: 8px 16px; border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       color: var(--text-secondary);
       background: var(--bg-card);
@@ -264,7 +261,7 @@
 
     .outcomes-list li {
       display: flex; gap: 20px;
-      padding: 20px 0;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border);
       align-items: baseline;
     }
@@ -292,21 +289,23 @@
 
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 20px; border-radius: 8px;
-      font-size: 14px; font-weight: 500;
-      text-decoration: none; transition: all 0.2s;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s;
+      letter-spacing: -0.01em;
     }
 
     .btn-ghost {
       background: transparent; color: var(--text-secondary);
       border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-hover); }
 
     .btn-primary {
-      background: #fff; color: #000;
+      background: var(--btn-primary-bg); color: var(--btn-primary-text);
+      border: 1px solid transparent;
     }
-    .btn-primary:hover { background: #e8e8e8; }
+    .btn-primary:hover { background: var(--btn-primary-hover); }
 
     /* ── FADE IN ──────────────────────────────────────── */
     /* only hidden once JS is confirmed, so content is never trapped if the script fails */
@@ -346,7 +345,7 @@
       border: 1px solid var(--border);
       margin: 40px 0;
       overflow: hidden;
-      background: #000;
+      background: var(--bg);
       cursor: pointer;
     }
 
@@ -364,7 +363,7 @@
     .play-circle {
       width: 80px; height: 80px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.95);
+      background: var(--play-bg);
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 48px rgba(0,0,0,0.55);
       transition: transform 0.2s;
@@ -410,7 +409,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 2px;
-      background: #fff;
+      background: var(--ba-handle);
       pointer-events: none;
     }
 
@@ -419,11 +418,12 @@
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 40px; height: 40px;
-      background: #fff;
+      background: var(--ba-handle);
+      color: var(--bg);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       pointer-events: none;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
 
     .ba-knob svg {
@@ -456,6 +456,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 28px 24px;
     }
 
@@ -504,7 +505,12 @@
       .stat-row { grid-template-columns: 1fr; }
       .ownership-grid { grid-template-columns: 1fr; }
     }
-  </style>
+  
+
+    @media (max-width: 720px) {
+      :root { --pad-x: 20px; }
+    }
+</style>
 
   <script>
     document.documentElement.classList.add('has-js')
@@ -565,7 +571,7 @@
         <div class="video-play-overlay" id="video-play-overlay">
           <div class="play-circle">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5.5v13L19 12 8 5.5z" fill="#000"/>
+              <path d="M8 5.5v13L19 12 8 5.5z" fill="currentColor"/>
             </svg>
           </div>
         </div>
@@ -733,7 +739,7 @@
         <div class="ba-handle" id="ba-handle">
           <div class="ba-knob">
             <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 3L2 8l3 5M11 3l3 5-3 5" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 3L2 8l3 5M11 3l3 5-3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>

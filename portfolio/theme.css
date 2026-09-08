@@ -1,0 +1,30 @@
+/* Geist / Vercel-inspired light theme tokens */
+:root {
+  --bg: #FAFAFA;
+  --bg-elevated: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F5F5F5;
+  --border: #EAEAEA;
+  --border-hover: #CFCFCF;
+  --text: #171717;
+  --text-muted: #888888;
+  --text-secondary: #666666;
+  --orange: #E8671A;
+  --orange-border: rgba(232, 103, 26, 0.4);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --btn-primary-bg: #171717;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #000000;
+  --thumb-bg: #F2F2F2;
+  --quote-mark: rgba(0, 0, 0, 0.06);
+  --hmw-accent: rgba(0, 0, 0, 0.2);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ba-handle: #171717;
+  --play-bg: rgba(255, 255, 255, 0.95);
+  --max: 1200px;
+  --max-prose: 1200px;
+  --max-wide: 1200px;
+  --pad-x: 32px;
+}

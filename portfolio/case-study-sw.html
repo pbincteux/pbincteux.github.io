@@ -5,47 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solutions Workspace — Pierre Bincteux</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.min.css" />
+  <link rel="stylesheet" href="theme.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #080808;
-      --bg-card: #111111;
-      --border: rgba(255,255,255,0.08);
-      --text: #ffffff;
-      --text-muted: rgba(255,255,255,0.45);
-      --text-secondary: rgba(255,255,255,0.7);
-      --orange: #E8671A;
-      --radius: 12px;
-    }
+    /* tokens: theme.css */
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      font-family: 'Geist Sans', 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-    .container-wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
+    .container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x); }
 
     /* ── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 0;
-      background: rgba(8,8,8,0.85);
-      backdrop-filter: blur(12px);
+      padding: 14px 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     nav .inner {
-      max-width: 900px; margin: 0 auto; padding: 0 24px;
+      max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x);
       display: flex; justify-content: space-between; align-items: center;
     }
 
@@ -70,7 +66,7 @@
     }
 
     /* ── HERO ─────────────────────────────────────────── */
-    #hero { padding: 140px 0 64px; }
+    #hero { padding: 156px 0 72px; }
 
     .case-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 
@@ -81,17 +77,17 @@
       border: 1px solid var(--border); color: var(--text-muted);
     }
 
-    .tag-highlight { border-color: rgba(232,103,26,0.45); color: var(--orange); }
+    .tag-highlight { border-color: var(--orange-border); color: var(--orange); }
 
     .case-title {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700; letter-spacing: -0.03em;
-      line-height: 1.07; margin-bottom: 20px;
+      font-size: clamp(36px, 5.2vw, 56px);
+      font-weight: 600; letter-spacing: -0.04em;
+      line-height: 1.05; margin-bottom: 20px;
     }
 
     .case-subtitle {
       font-size: 18px; color: var(--text-secondary);
-      line-height: 1.65; max-width: 600px;
+      line-height: 1.65; max-width: 720px;
     }
 
     /* ── DETAILS ROW ──────────────────────────────────── */
@@ -122,7 +118,7 @@
     .hero-image img { width: 100%; display: block; }
 
     /* ── CONTENT ──────────────────────────────────────── */
-    .content-section { padding: 64px 0; border-top: 1px solid var(--border); }
+    .content-section { padding: 80px 0; border-top: 1px solid var(--border); }
 
     .section-label {
       font-size: 11px; font-weight: 600;
@@ -131,7 +127,7 @@
     }
 
     .section-heading {
-      font-size: 26px; font-weight: 700;
+      font-size: 26px; font-weight: 600;
       letter-spacing: -0.025em; margin-bottom: 20px;
     }
 
@@ -144,7 +140,7 @@
     .hmw {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-left: 3px solid rgba(255,255,255,0.3);
+      border-left: 3px solid var(--hmw-accent);
       border-radius: var(--radius);
       padding: 28px 32px; margin: 16px 0;
     }
@@ -168,7 +164,7 @@
     .stat-cell { background: var(--bg-card); padding: 28px 24px; }
 
     .stat-value {
-      font-size: 36px; font-weight: 700;
+      font-size: 36px; font-weight: 600;
       letter-spacing: -0.04em; margin-bottom: 6px;
     }
 
@@ -183,7 +179,7 @@
     .ownership-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 24px;
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 24px;
     }
 
     .ownership-number {
@@ -213,7 +209,7 @@
     .approach-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 24px;
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 24px;
     }
 
     .approach-number {
@@ -243,7 +239,7 @@
     }
 
     .subproject-title {
-      font-size: 20px; font-weight: 700;
+      font-size: 20px; font-weight: 600;
       letter-spacing: -0.02em; color: var(--text);
     }
 
@@ -256,7 +252,7 @@
     .finding-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px;
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px;
     }
 
     .finding-label {
@@ -266,7 +262,7 @@
     }
 
     .finding-value {
-      font-size: 28px; font-weight: 700;
+      font-size: 28px; font-weight: 600;
       letter-spacing: -0.03em; margin-bottom: 8px;
     }
 
@@ -277,7 +273,7 @@
 
     .deliverable-tag {
       font-size: 13px; font-weight: 500;
-      padding: 8px 16px; border-radius: 8px;
+      padding: 8px 16px; border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       color: var(--text-secondary); background: var(--bg-card);
     }
@@ -287,7 +283,7 @@
 
     .next-steps li {
       display: flex; gap: 20px;
-      padding: 20px 0; border-bottom: 1px solid var(--border);
+      padding: 14px 0; border-bottom: 1px solid var(--border);
       align-items: baseline;
     }
     .next-steps li:last-child { border-bottom: none; }
@@ -322,19 +318,20 @@
 
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 20px; border-radius: 8px;
-      font-size: 14px; font-weight: 500;
-      text-decoration: none; transition: all 0.2s;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s;
+      letter-spacing: -0.01em;
     }
 
     .btn-ghost {
       background: transparent; color: var(--text-secondary);
       border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-hover); }
 
-    .btn-primary { background: #fff; color: #000; }
-    .btn-primary:hover { background: #e8e8e8; }
+    .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); border: 1px solid transparent; }
+    .btn-primary:hover { background: var(--btn-primary-hover); }
 
     /* ── FADE IN ──────────────────────────────────────── */
     /* only hidden once JS is confirmed, so content is never trapped if the script fails */
@@ -354,7 +351,12 @@
       .ownership-grid { grid-template-columns: 1fr; }
       .findings-row { grid-template-columns: 1fr; }
     }
-  </style>
+  
+
+    @media (max-width: 720px) {
+      :root { --pad-x: 20px; }
+    }
+</style>
 
   <script>
     document.documentElement.classList.add('has-js')
