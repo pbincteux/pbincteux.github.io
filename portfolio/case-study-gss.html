@@ -49,9 +49,16 @@
       display: flex; justify-content: space-between; align-items: center;
     }
 
+    .nav-brand { display: flex; align-items: baseline; gap: 14px; }
+
     .nav-name {
       font-size: 15px; font-weight: 500; color: var(--text);
-      text-decoration: none;
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+
+    .nav-role {
+      font-size: 15px; font-weight: 400; color: var(--text-muted);
+      letter-spacing: -0.01em;
     }
 
     .nav-back {
@@ -60,6 +67,10 @@
       display: flex; align-items: center; gap: 6px;
     }
     .nav-back:hover { color: var(--text); }
+
+    @media (max-width: 720px) {
+      .nav-role { display: none; }
+    }
 
     /* ── HERO ─────────────────────────────────────────── */
     #hero { padding: 140px 0 64px; }
@@ -436,11 +447,14 @@
     .btn-primary:hover { background: #e8e8e8; }
 
     /* ── FADE IN ──────────────────────────────────────── */
-    .fade-in {
+    /* only hidden once JS is confirmed, so content is never trapped if the script fails */
+    .fade-in { opacity: 1; transform: none; }
+
+    html.has-js .fade-in {
       opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .fade-in.visible { opacity: 1; transform: none; }
+    html.has-js .fade-in.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 640px) {
@@ -452,14 +466,21 @@
       .testimonial { padding: 28px 24px; }
     }
   </style>
+
+  <script>
+    document.documentElement.classList.add('has-js')
+  </script>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
     <div class="inner">
-      <a href="index.html" class="nav-name">Pierre Bincteux</a>
-      <a href="index.html#work" class="nav-back">← All work</a>
+      <div class="nav-brand">
+        <a href="index.html" class="nav-name">PIERRE BINCTEUX</a>
+        <span class="nav-role">PRODUCT DESIGNER + BRAND</span>
+      </div>
+      <a href="index.html#work" class="nav-back">← ALL WORK</a>
     </div>
   </nav>
 
