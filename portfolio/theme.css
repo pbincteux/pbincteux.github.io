@@ -28,3 +28,46 @@
   --max-wide: 1200px;
   --pad-x: 32px;
 }
+
+/* Light button motion — springy hover / press (Motion-inspired, CSS-only) */
+.btn {
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.28s ease;
+  transform: translateY(0) scale(1);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+  }
+  .btn-ghost:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+  transition-duration: 0.08s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    will-change: auto;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+    box-shadow: none;
+  }
+}
+

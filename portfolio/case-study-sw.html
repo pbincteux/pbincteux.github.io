@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solutions Workspace — Pierre Bincteux</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
@@ -320,8 +323,9 @@
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 14px; border-radius: var(--radius-sm);
       font-size: 13px; font-weight: 500;
-      text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s;
+      text-decoration: none;
       letter-spacing: -0.01em;
+      /* transform / spring motion lives in theme.css */
     }
 
     .btn-ghost {
