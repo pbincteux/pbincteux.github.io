@@ -53,9 +53,16 @@
       display: flex; justify-content: space-between; align-items: center;
     }
 
+    .nav-brand { display: flex; align-items: baseline; gap: 14px; }
+
     .nav-name {
       font-size: 15px; font-weight: 500; color: var(--text);
       text-decoration: none; letter-spacing: -0.01em;
+    }
+
+    .nav-role {
+      font-size: 15px; font-weight: 400; color: var(--text-muted);
+      letter-spacing: -0.01em;
     }
 
     .nav-links { display: flex; gap: 28px; }
@@ -117,7 +124,7 @@
     }
 
     .hero-headline {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(32px, 5vw, 48px);
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -231,6 +238,14 @@
     .project-thumb-inner {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, #1e1e1e 0%, #141414 100%);
+    }
+
+    .project-thumb video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      pointer-events: none;
     }
 
     .project-body { padding: 24px; }
@@ -396,16 +411,20 @@
     footer p { font-size: 13px; color: var(--text-muted); }
 
     /* ── FADE-IN ANIMATION ───────────────────────────── */
-    .fade-in {
+    /* only hidden once JS is confirmed, so content is never trapped if the script fails */
+    .fade-in { opacity: 1; transform: none; }
+
+    html.has-js .fade-in {
       opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .fade-in.visible { opacity: 1; transform: none; }
+    html.has-js .fade-in.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 720px) {
       .hero-layout { flex-direction: column-reverse; gap: 40px; }
       .hero-image-wrap { width: 180px; }
+      .nav-role { display: none; }
     }
 
     @media (max-width: 640px) {
@@ -423,6 +442,8 @@
   </style>
 
   <script>
+    document.documentElement.classList.add('has-js')
+
     // Arriving on a #hash lands instantly — smooth scrolling is for in-page clicks only
     if (location.hash) {
       document.documentElement.style.scrollBehavior = 'auto'
@@ -437,7 +458,10 @@
   <!-- NAV -->
   <nav>
     <div class="inner">
-      <a href="#" class="nav-name">Pierre Bincteux</a>
+      <div class="nav-brand">
+        <a href="#" class="nav-name">Pierre Bincteux</a>
+        <span class="nav-role">Product Designer + Creative</span>
+      </div>
       <div class="nav-links">
         <a href="#work">Work</a>
         <a href="#about">About</a>
@@ -451,12 +475,12 @@
     <div class="container">
       <div class="hero-layout">
         <div class="hero-content">
-          <span class="hero-label fade-in">Senior Product Designer · Dublin, Ireland</span>
+          <span class="hero-label fade-in">B2B SaaS · Enterprise UX · Dublin, Ireland</span>
           <h1 class="hero-headline fade-in">
-            Complexity, simplified.<br><em>Research-first. Enterprise-fluent.</em>
+            I'm Pierre, a product designer<br><em>who came up through brand.</em>
           </h1>
           <p class="hero-sub fade-in">
-            10+ years in design — from brand and visual work at startups in Paris to owning end-to-end UX for global seller platforms at Salesforce. Research-led, AI-assisted, and obsessed with the gap between how products work and how people actually use them.
+            10+ years in design, the last 7 in B2B SaaS at Salesforce — AI-powered seller platforms, a design system used by 35,000+ people, and a lot of 0→1 vision work, research to prototype, usually as the sole designer.
           </p>
           <div class="hero-actions fade-in">
             <a href="#work" class="btn btn-primary">View my work</a>
@@ -553,7 +577,16 @@
         <a href="case-study-q2c.html" class="project-card featured fade-in">
           <div class="project-thumb">
             <div class="project-thumb-inner"></div>
-            <img src="q2c-figma.png" alt="Q2C Deal Optimization" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;" />
+            <video
+              src="q2c-home-loop.mp4"
+              poster="q2c-figma.png"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="Q2C Deal Optimization"
+            ></video>
           </div>
           <div class="project-body">
             <div class="project-tag">Vision Concept · Enterprise UX · Salesforce</div>
