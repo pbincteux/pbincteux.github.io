@@ -141,9 +141,12 @@
     }
     .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-hover); }
 
-    /* ── WORK ────────────────────────────────────────── */
-    #testimonials { padding: 0 0 80px; }
-    #work { padding-top: 0; }
+    /* ── WORK / TESTIMONIALS ─────────────────────────── */
+    #testimonials,
+    #work {
+      padding: 0 0 96px;
+    }
+
     .section-header {
       display: flex; justify-content: space-between; align-items: baseline;
       margin-bottom: 32px;
@@ -238,7 +241,6 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-top: 32px;
     }
 
     .testimonial-card.full { grid-column: span 2; }
@@ -406,8 +408,10 @@
         padding-bottom: 48px;
       }
 
-      #testimonials { padding: 0 0 40px; }
-      #work { padding-top: 0; padding-bottom: 56px; }
+      #testimonials,
+      #work {
+        padding: 0 0 56px;
+      }
 
       .hero-layout { flex-direction: column-reverse; gap: 24px; }
       .hero-image-wrap { width: 160px; }
@@ -426,7 +430,7 @@
 
     @media (max-width: 640px) {
       .testimonial-card.full { grid-column: span 1; }
-      .testimonials-grid { grid-template-columns: 1fr; margin-top: 0; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; gap: 12px; }
       .project-card.featured { grid-column: span 1; }
       .about-grid { grid-template-columns: 1fr; }
