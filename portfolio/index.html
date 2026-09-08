@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pierre Bincteux — Product Designer</title>
+  <title>Pierre Bincteux · Product Designer</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="favicon.png" />
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.min.css" />
-  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="theme.css?v=10" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,44 +32,22 @@
     }
 
     /* ── LAYOUT ─────────────────────────────────────── */
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
+    /* .page-col grid lives in theme.css, keeps home aligned with the site header */
+    .container {
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, var(--max-wide)) minmax(0, 1fr);
+    }
+    .container > * {
+      grid-column: 2;
+      min-width: 0;
+    }
 
     section { padding: 96px 0; }
 
-    /* ── NAV ─────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 14px 0;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav .inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .nav-brand { display: flex; align-items: baseline; gap: 14px; }
-
-    .nav-name {
-      font-size: 15px; font-weight: 500; color: var(--text);
-      text-decoration: none; letter-spacing: -0.01em;
-    }
-
-    .nav-role {
-      font-size: 15px; font-weight: 400; color: var(--text-muted);
-      letter-spacing: -0.01em;
-    }
-
-    .nav-links { display: flex; gap: 28px; }
-
-    .nav-links a {
-      font-size: 14px; color: var(--text-muted);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ─────────────────────────────────────────── */
     #hero {
@@ -136,7 +114,7 @@
 
     .hero-sub {
       font-size: 16px; color: var(--text-secondary);
-      max-width: 540px; line-height: 1.65;
+      line-height: 1.65;
       margin-bottom: 40px;
     }
 
@@ -163,37 +141,9 @@
     }
     .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-hover); }
 
-    /* ── METRICS ─────────────────────────────────────── */
-    #metrics { padding: 0 0 96px; }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .metric {
-      background: var(--bg-card);
-      padding: 32px 28px;
-    }
-
-    .metric-value {
-      font-size: 42px; font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .metric-label {
-      font-size: 13px; color: var(--text-muted);
-      line-height: 1.4;
-    }
-
     /* ── WORK ────────────────────────────────────────── */
+    #testimonials { padding: 0 0 80px; }
+    #work { padding-top: 0; }
     .section-header {
       display: flex; justify-content: space-between; align-items: baseline;
       margin-bottom: 32px;
@@ -241,14 +191,18 @@
     .project-thumb-inner {
       position: absolute; inset: 0;
       background: var(--thumb-bg);
+      z-index: 0;
     }
 
-    .project-thumb video {
+    .project-thumb video,
+    .project-thumb img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0.85;
+      opacity: 1;
       pointer-events: none;
+      z-index: 1;
+      background: var(--thumb-bg);
     }
 
     .project-body { padding: 24px; }
@@ -397,7 +351,7 @@
     .contact-heading {
       font-size: clamp(32px, 4.5vw, 48px);
       font-weight: 600; letter-spacing: -0.04em;
-      max-width: 560px; margin: 0 auto 32px;
+      margin: 0 auto 32px;
     }
 
     .contact-links {
@@ -411,8 +365,22 @@
     }
 
     footer .inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x);
-      display: flex; justify-content: space-between; align-items: center;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, var(--max-wide)) minmax(0, 1fr);
+      align-items: center;
+    }
+
+    footer .footer-bar {
+      grid-column: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      min-width: 0;
     }
 
     footer p { font-size: 13px; color: var(--text-muted); }
@@ -429,34 +397,49 @@
 
     /* ── RESPONSIVE ──────────────────────────────────── */
     @media (max-width: 720px) {
-      .hero-layout { flex-direction: column-reverse; gap: 40px; }
-      .hero-image-wrap { width: 180px; }
+      :root { --pad-x: 20px; }
+
+      section { padding: 56px 0; }
+
+      #hero {
+        padding-top: 104px;
+        padding-bottom: 48px;
+      }
+
+      #testimonials { padding: 0 0 40px; }
+      #work { padding-top: 0; padding-bottom: 56px; }
+
+      .hero-layout { flex-direction: column-reverse; gap: 24px; }
+      .hero-image-wrap { width: 160px; }
+      .hero-label { margin-bottom: 16px; }
+      .hero-headline { margin-bottom: 16px; font-size: clamp(30px, 8vw, 40px); }
+      .hero-sub { margin-bottom: 28px; }
+
+      .section-header { margin-bottom: 20px; }
+
+      .about-grid { gap: 28px; }
+      .testimonial-card { padding: 24px; }
+      .project-body { padding: 20px; }
+
       .nav-role { display: none; }
     }
 
     @media (max-width: 640px) {
       .testimonial-card.full { grid-column: span 1; }
-    }
-
-    @media (max-width: 640px) {
-      .metrics-grid { grid-template-columns: 1fr 1fr; }
-      .metrics-grid .metric:last-child { grid-column: span 2; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; margin-top: 0; }
+      .projects-grid { grid-template-columns: 1fr; gap: 12px; }
       .project-card.featured { grid-column: span 1; }
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { aspect-ratio: 4/3; }
-    }
-  
-
-    @media (max-width: 720px) {
-      :root { --pad-x: 20px; }
+      #contact { padding: 56px 0; }
+      .contact-heading { margin-bottom: 24px; }
     }
 </style>
 
   <script>
     document.documentElement.classList.add('has-js')
 
-    // Arriving on a #hash lands instantly — smooth scrolling is for in-page clicks only
+    // Arriving on a #hash lands instantly, smooth scrolling is for in-page clicks only
     if (location.hash) {
       document.documentElement.style.scrollBehavior = 'auto'
       addEventListener('load', () => requestAnimationFrame(() => {
@@ -468,16 +451,18 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav class="site-nav">
     <div class="inner">
-      <div class="nav-brand">
-        <a href="#" class="nav-name">PIERRE BINCTEUX</a>
+      <div class="nav-center">
+        <div class="nav-brand">
+        <a href="index.html" class="nav-name">PIERRE BINCTEUX</a>
         <span class="nav-role">PRODUCT DESIGNER + BRAND</span>
       </div>
-      <div class="nav-links">
+        <div class="nav-links">
         <a href="#work">WORK</a>
         <a href="#about">ABOUT</a>
         <a href="#contact">CONTACT</a>
+      </div>
       </div>
     </div>
   </nav>
@@ -489,10 +474,10 @@
         <div class="hero-content">
           <span class="hero-label fade-in">B2B SaaS · Enterprise UX · Dublin, Ireland</span>
           <h1 class="hero-headline fade-in">
-            I'm Pierre, a product designer<br><em>who came up through brand.</em>
+            I'm Pierre, a Product Designer<br><em>who came up through brand.</em>
           </h1>
           <p class="hero-sub fade-in">
-            10+ years in design, the last 7 in B2B SaaS at Salesforce — AI-powered seller platforms, a design system used by 35,000+ people, and a lot of 0→1 vision work, research to prototype, usually as the sole designer.
+            10+ years in design, the last 7 in B2B SaaS at Salesforce, AI-powered seller platforms, a design system used by 35,000+ people, and a lot of 0→1 vision work, research to prototype, usually as the sole designer.
           </p>
           <div class="hero-actions fade-in">
             <a href="#work" class="btn btn-primary">View my work</a>
@@ -506,28 +491,8 @@
     </div>
   </section>
 
-  <!-- METRICS -->
-  <section id="metrics">
-    <div class="container">
-      <div class="metrics-grid fade-in">
-        <div class="metric">
-          <div class="metric-value">10+</div>
-          <div class="metric-label">Years designing products — from early-stage startups to Fortune 500</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">7 yrs 10 mo</div>
-          <div class="metric-label">At Salesforce owning strategy &amp; end-to-end UX for global seller platforms</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">0→1</div>
-          <div class="metric-label">Vision concepts shipped — from seller research through interactive prototype</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TESTIMONIALS -->
-  <section id="testimonials" style="padding: 0 0 80px;">
+  <section id="testimonials">
     <div class="container">
       <div class="section-header">
         <span class="section-title">Kind words</span>
@@ -602,8 +567,8 @@
           </div>
           <div class="project-body">
             <div class="project-tag">Vision Concept · Enterprise UX · Salesforce</div>
-            <div class="project-title">Q2C Deal Optimization — Redesigning the end-to-end proposal journey for Salesforce sellers</div>
-            <div class="project-desc">Sellers were drowning in red tape and spreadsheets to close deals. I co-led a 0→1 vision concept — from seller research and stakeholder workshops through to an interactive prototype powered by agentic automations.</div>
+            <div class="project-title">Q2C Deal Optimization: Redesigning the end-to-end proposal journey for Salesforce sellers</div>
+            <div class="project-desc">Sellers were drowning in red tape and spreadsheets to close deals. I co-led a 0→1 vision concept, from seller research and stakeholder workshops through to an interactive prototype powered by agentic automations.</div>
             <div class="project-meta">
               <span>Role: Senior UX Designer</span>
               <span>2026</span>
@@ -629,8 +594,8 @@
           </div>
           <div class="project-body">
             <div class="project-tag">Vision Concept · Guided Selling · Salesforce</div>
-            <div class="project-title">Guided Solution Selling — AI-powered recommendations for every deal stage</div>
-            <div class="project-desc">Sellers were manually hunting for the right challenges and plays. I designed an intelligent recommendation engine that surfaces the right content in context — built with AI Studio and Google Stitch.</div>
+            <div class="project-title">Guided Solution Selling: AI-powered recommendations for every deal stage</div>
+            <div class="project-desc">Sellers were manually hunting for the right challenges and plays. I designed an intelligent recommendation engine that surfaces the right content in context, built with AI Studio and Google Stitch.</div>
             <div class="project-meta">
               <span>Role: Senior UX Designer</span>
               <span>2025</span>
@@ -643,12 +608,12 @@
         <a href="case-study-sw.html" class="project-card fade-in">
           <div class="project-thumb">
             <div class="project-thumb-inner"></div>
-            <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck%20(1).png" alt="Solutions Workspace" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0.85;" />
+            <img src="case%20study3/Solutions%20Workspace%20Demo%20Deck%20(1).png" alt="Solutions Workspace" style="object-position:top;" />
           </div>
           <div class="project-body">
             <div class="project-tag">Shipped · Design System · Enterprise UX · Salesforce</div>
-            <div class="project-title">Solutions Workspace — Custom design system and multi-product UX for 35,000+ users</div>
-            <div class="project-desc">SE Insights, Activity Editor, A/B testing, user research, and a custom design system — all shipping inside Salesforce's internal platform for Solution Engineers.</div>
+            <div class="project-title">Solutions Workspace: Custom design system and multi-product UX for 35,000+ users</div>
+            <div class="project-desc">SE Insights, Activity Editor, A/B testing, user research, and a custom design system, all shipping inside Salesforce's internal platform for Solution Engineers.</div>
             <div class="project-meta">
               <span>Role: Senior UX Designer</span>
               <span>2023–2025</span>
@@ -669,10 +634,10 @@
         <div class="fade-in">
           <h2 class="about-heading">Hey, I'm Pierre <span style="color:var(--text-muted); font-weight:400;">(pee-air bang-tuh)</span></h2>
           <p class="about-body">
-            I'm a Senior Experience Designer at Salesforce in Dublin — product-first, research-led, and a strong believer that great enterprise UX is just as important as consumer UX (it's just harder to pull off).
+            I'm a Senior Experience Designer at Salesforce in Dublin, product-first, research-led, and a strong believer that great enterprise UX is just as important as consumer UX (it's just harder to pull off).
           </p>
           <p class="about-body">
-            I started in visual and brand design at early-stage startups in Lyon and Paris 🇫🇷, then moved into enterprise UX at Salesforce, where I've spent 7+ years owning strategy and end-to-end design for complex seller platforms. I'm also an internal champion of AI-assisted design — I've piloted Gemini, Claude, and Cursor across team workflows and led offsite workshops on how to use them effectively.
+            I started in visual and brand design at early-stage startups in Lyon and Paris 🇫🇷, then moved into enterprise UX at Salesforce, where I've spent 7+ years owning strategy and end-to-end design for complex seller platforms. I'm also an internal champion of AI-assisted design, I've piloted Gemini, Claude, and Cursor across team workflows and led offsite workshops on how to use them effectively.
           </p>
           <div class="skills-row">
             <span class="skill-tag">User Research</span>
@@ -706,8 +671,10 @@
   <!-- FOOTER -->
   <footer>
     <div class="inner">
-      <p>© 2026 Pierre Bincteux</p>
-      <p>Built with care.</p>
+      <div class="footer-bar">
+        <p>© 2026 Pierre Bincteux</p>
+        <p>Built with care.</p>
+      </div>
     </div>
   </footer>
 

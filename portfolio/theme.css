@@ -29,7 +29,108 @@
   --pad-x: 32px;
 }
 
-/* Light button motion — springy hover / press (Motion-inspired, CSS-only) */
+/* ── Shared site header (index + case studies) ───────── */
+nav.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 14px 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Same optical center as page content: equal side columns + fixed middle */
+nav.site-nav .inner {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--max-wide)) minmax(0, 1fr);
+  align-items: center;
+}
+
+nav.site-nav .nav-center {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+nav.site-nav .nav-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+nav.site-nav .nav-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+nav.site-nav .nav-role {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+nav.site-nav .nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+nav.site-nav .nav-links a {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav.site-nav .nav-links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  nav.site-nav .nav-role {
+    display: none;
+  }
+}
+
+/* Shared content column, same grid as the site header */
+.page-col {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--max-wide)) minmax(0, 1fr);
+}
+
+.page-col > * {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.page-col-bar {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Light button motion, springy hover / press (Motion-inspired, CSS-only) */
 .btn {
   transition:
     background 0.15s ease,
@@ -68,6 +169,144 @@
   .btn:active {
     transform: none;
     box-shadow: none;
+  }
+}
+
+/* Case study left TOC, content stays optically centered (Rachel-style) */
+:root {
+  --case-rail: 152px;
+  --case-gap: 40px;
+}
+
+.case-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--max-wide)) minmax(0, 1fr);
+}
+
+.case-toc {
+  display: none;
+}
+
+.case-main {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.case-toc-back {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.85;
+  margin-bottom: 16px;
+  transition: opacity 0.15s ease;
+}
+
+.case-toc-back:hover {
+  opacity: 1;
+}
+
+.case-toc-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.case-main .container,
+.case-main .container-wide {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.case-main [id] {
+  scroll-margin-top: 96px;
+}
+
+/* Case hero intro matches the full content column */
+.case-main .case-subtitle {
+  max-width: none;
+}
+
+/* TOC appears when side gutters can hold the rail without squeezing the article */
+@media (min-width: 1400px) {
+  nav.site-nav.case-page .inner,
+  .case-shell {
+    grid-template-columns:
+      minmax(var(--case-rail), 1fr)
+      minmax(0, var(--max-wide))
+      minmax(var(--case-rail), 1fr);
+    column-gap: var(--case-gap);
+  }
+
+  .case-toc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-column: 1;
+    justify-self: end;
+    width: var(--case-rail);
+    position: sticky;
+    top: 72px;
+    align-self: start;
+    padding-top: 84px;
+    z-index: 40;
+  }
+
+  .case-toc-links a {
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0.4;
+    transition: opacity 0.15s ease, color 0.15s ease;
+    text-align: left;
+  }
+
+  .case-toc-links a:hover {
+    opacity: 0.75;
+  }
+
+  .case-toc-links a.is-active {
+    opacity: 1;
+    color: var(--text);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-toc-back,
+  .case-toc-links a {
+    transition: none;
+  }
+}
+
+/* Case study mobile spacing */
+@media (max-width: 720px) {
+  .case-main #hero {
+    padding-top: 104px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .case-main .content-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .case-main .back-section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .case-toc {
+    display: none !important;
   }
 }
 

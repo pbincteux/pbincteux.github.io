@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Q2C Deal Optimization — Pierre Bincteux</title>
+  <title>Q2C Deal Optimization · Pierre Bincteux</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="favicon.png" />
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.min.css" />
-  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="theme.css?v=10" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,43 +33,6 @@
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad-x); }
     .container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x); }
 
-    /* ── NAV ─────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 14px 0;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav .inner {
-      max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--pad-x);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .nav-brand { display: flex; align-items: baseline; gap: 14px; }
-
-    .nav-name {
-      font-size: 15px; font-weight: 500; color: var(--text);
-      text-decoration: none; letter-spacing: -0.01em;
-    }
-
-    .nav-role {
-      font-size: 15px; font-weight: 400; color: var(--text-muted);
-      letter-spacing: -0.01em;
-    }
-
-    .nav-back {
-      font-size: 14px; color: var(--text-muted);
-      text-decoration: none; transition: color 0.2s;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .nav-back:hover { color: var(--text); }
-
-    @media (max-width: 720px) {
-      .nav-role { display: none; }
-    }
 
     /* ── HERO ─────────────────────────────────────────── */
     #hero { padding: 156px 0 72px; }
@@ -100,7 +63,7 @@
 
     .case-subtitle {
       font-size: 18px; color: var(--text-secondary);
-      line-height: 1.65; max-width: 720px;
+      line-height: 1.65;
     }
 
     /* ── HERO DETAILS ROW ─────────────────────────────── */
@@ -523,16 +486,36 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav class="site-nav case-page">
     <div class="inner">
-      <div class="nav-brand">
+      <div class="nav-center">
+        <div class="nav-brand">
         <a href="index.html" class="nav-name">PIERRE BINCTEUX</a>
         <span class="nav-role">PRODUCT DESIGNER + BRAND</span>
       </div>
-      <a href="index.html#work" class="nav-back">← ALL WORK</a>
+        <div class="nav-links">
+        <a href="index.html#work">WORK</a>
+        <a href="index.html#about">ABOUT</a>
+        <a href="index.html#contact">CONTACT</a>
+      </div>
+      </div>
     </div>
   </nav>
 
+  <div class="case-shell">
+  <aside class="case-toc" aria-label="On this page">
+    <a href="index.html#work" class="case-toc-back">← BACK</a>
+    <div class="case-toc-links">
+        <a href="#hero">Overview</a>
+        <a href="#context">Context</a>
+        <a href="#ownership">Ownership</a>
+        <a href="#problem">Problem</a>
+        <a href="#approach">Approach</a>
+        <a href="#solution">Solution</a>
+        <a href="#outcomes">Outcomes</a>
+    </div>
+  </aside>
+  <div class="case-main">
   <!-- HERO -->
   <section id="hero">
     <div class="container">
@@ -546,7 +529,7 @@
 
       <h1 class="case-title fade-in">Q2C Deal Optimization</h1>
       <p class="case-subtitle fade-in">
-        Salesforce sellers were spending hours wrestling with spreadsheets, approvals, and fragmented tools to close a single deal. We designed a next-generation proposal experience — end-to-end, agentic-powered, and legal-ready — from scratch.
+        Salesforce sellers were spending hours wrestling with spreadsheets, approvals, and fragmented tools to close a single deal. We designed a next-generation proposal experience (end-to-end, agentic-powered, and legal-ready) from scratch.
       </p>
 
       <div class="details-row fade-in">
@@ -569,7 +552,7 @@
       </div>
 
       <div class="video-wrap fade-in" id="video-container">
-        <video id="case-video" preload="metadata" poster="q2c-prototype.png">
+        <video id="case-video" preload="metadata" poster="q2c-prototype.png" playsinline webkit-playsinline>
           <source src="q2c-video.mp4" type="video/mp4" />
         </video>
         <div class="video-play-overlay" id="video-play-overlay">
@@ -584,26 +567,26 @@
   </section>
 
   <!-- CONTEXT -->
-  <section class="content-section">
+  <section id="context" class="content-section">
     <div class="container">
       <p class="section-label fade-in">Context</p>
       <h2 class="section-heading fade-in">Closing enterprise deals is broken</h2>
       <p class="body-text fade-in">
-        At Salesforce, the Quote-to-Cash (Q2C) process is the critical path from "customer interested" to "contract signed." But for Account Executives, it had become a maze of manual steps, custom spreadsheets, fragmented approvals, and legal back-and-forth — before a single deal could close.
+        At Salesforce, the Quote-to-Cash (Q2C) process is the critical path from "customer interested" to "contract signed." But for Account Executives, it had become a maze of manual steps, custom spreadsheets, fragmented approvals, and legal back-and-forth, before a single deal could close.
       </p>
       <p class="body-text fade-in">
-        This project sat within Salesforce's internal Q2C Innovation initiative, working directly inside Org62 — Salesforce's own instance of Salesforce — at the Opportunity level. The goal: design a next-generation experience that sellers would actually want to use.
+        This project sat within Salesforce's internal Q2C Innovation initiative, working directly inside Org62 (Salesforce's own instance of Salesforce) at the Opportunity level. The goal: design a next-generation experience that sellers would actually want to use.
       </p>
     </div>
   </section>
 
   <!-- INDIVIDUAL OWNERSHIP -->
-  <section class="content-section">
+  <section id="ownership" class="content-section">
     <div class="container">
       <p class="section-label fade-in">Individual Ownership</p>
       <h2 class="section-heading fade-in">What I personally drove</h2>
       <p class="body-text fade-in">
-        This was a collaborative project — but here's what I owned end-to-end, from blank canvas to final deliverable.
+        This was a collaborative project, but here's what I owned end-to-end, from blank canvas to final deliverable.
       </p>
 
       <div class="ownership-grid fade-in">
@@ -630,19 +613,19 @@
         <div class="ownership-card">
           <div class="ownership-number">02</div>
           <div class="ownership-title">Wireframes</div>
-          <p class="approach-desc">Translated workshop outputs into structured lo-fi flows — mapping the full end-to-end proposal journey before committing to visual design.</p>
+          <p class="approach-desc">Translated workshop outputs into structured lo-fi flows, mapping the full end-to-end proposal journey before committing to visual design.</p>
         </div>
 
         <div class="ownership-card">
           <div class="ownership-number">03</div>
           <div class="ownership-title">AI Studio Prototype</div>
-          <p class="approach-desc">Built the fully interactive prototype in AI Studio — agentic-powered, clickable end-to-end, ready for stakeholder demos and seller validation.</p>
+          <p class="approach-desc">Built the fully interactive prototype in AI Studio, agentic-powered, clickable end-to-end, ready for stakeholder demos and seller validation.</p>
         </div>
 
         <div class="ownership-card">
           <div class="ownership-number">04</div>
           <div class="ownership-title">2-Minute Video Walkthrough</div>
-          <p class="approach-desc">Wrote the story, recorded the narrative, and added voiceover — a self-contained demo that communicates the vision without needing a live presenter.</p>
+          <p class="approach-desc">Wrote the story, recorded the narrative, and added voiceover, a self-contained demo that communicates the vision without needing a live presenter.</p>
         </div>
 
       </div>
@@ -650,23 +633,23 @@
   </section>
 
   <!-- PROBLEM -->
-  <section class="content-section">
+  <section id="problem" class="content-section">
     <div class="container">
       <p class="section-label fade-in">The Problem</p>
       <h2 class="section-heading fade-in">Too much red tape to close deals</h2>
       <p class="body-text fade-in">
-        Sellers were starting from complex, multi-scenario proposals — different pricing configurations, discount levels, contract terms — and had to manually reconcile all of it before getting to a legal-ready contract. Each step introduced friction, delay, and risk of error.
+        Sellers were starting from complex, multi-scenario proposals (different pricing configurations, discount levels, contract terms) and had to manually reconcile all of it before getting to a legal-ready contract. Each step introduced friction, delay, and risk of error.
       </p>
 
       <div class="hmw fade-in">
         <p class="hmw-label">How might we</p>
-        <p class="hmw-text">"How might we help sellers start from a complex, multi-scenario proposal to create an optimally configured and legal-ready contract swiftly — in a way that increases customer trust and reduces attrition?"</p>
+        <p class="hmw-text">"How might we help sellers start from a complex, multi-scenario proposal to create an optimally configured and legal-ready contract swiftly, in a way that increases customer trust and reduces attrition?"</p>
       </div>
 
       <div class="stat-row fade-in">
         <div class="stat-cell">
           <div class="stat-value">Multi</div>
-          <div class="stat-desc">Scenario proposals — sellers managing multiple pricing configurations simultaneously</div>
+          <div class="stat-desc">Scenario proposals, sellers managing multiple pricing configurations simultaneously</div>
         </div>
         <div class="stat-cell">
           <div class="stat-value">Manual</div>
@@ -674,26 +657,26 @@
         </div>
         <div class="stat-cell">
           <div class="stat-value">0→1</div>
-          <div class="stat-desc">Greenfield — no existing unified experience to build on, only fragmented tools</div>
+          <div class="stat-desc">Greenfield, no existing unified experience to build on, only fragmented tools</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- APPROACH -->
-  <section class="content-section">
+  <section id="approach" class="content-section">
     <div class="container">
       <p class="section-label fade-in">Approach</p>
       <h2 class="section-heading fade-in">Designing the future of work through rigorous UX practice</h2>
       <p class="body-text fade-in">
-        Rather than starting with wireframes, we started with the desired end-state: a legal-ready contract. Then we worked backward — identifying every data point, decision, and approval required to get there. This reverse-engineering approach kept us anchored to real seller outcomes, not assumptions.
+        Rather than starting with wireframes, we started with the desired end-state: a legal-ready contract. Then we worked backward, identifying every data point, decision, and approval required to get there. This reverse-engineering approach kept us anchored to real seller outcomes, not assumptions.
       </p>
 
       <div class="approach-grid fade-in">
         <div class="approach-card">
           <div class="approach-number">01</div>
           <div class="approach-title">Reverse Engineer Solution & Vision</div>
-          <div class="approach-desc">Started with the end-state — a legal-ready contract — and mapped backward to surface every required input, decision point, and approval along the way.</div>
+          <div class="approach-desc">Started with the end-state (a legal-ready contract) and mapped backward to surface every required input, decision point, and approval along the way.</div>
         </div>
         <div class="approach-card">
           <div class="approach-number">02</div>
@@ -703,14 +686,14 @@
         <div class="approach-card">
           <div class="approach-number">03</div>
           <div class="approach-title">Rapid Prototyping</div>
-          <div class="approach-desc">Ran iterative design cycles — bringing two separate quote visions into one unified end-to-end journey — refining in real-time with stakeholder feedback.</div>
+          <div class="approach-desc">Ran iterative design cycles (bringing two separate quote visions into one unified end-to-end journey) refining in real-time with stakeholder feedback.</div>
         </div>
       </div>
 
       <div class="media-full fade-in">
         <img src="q2c-workshop.png" alt="UX Workshop session" />
       </div>
-      <p class="media-caption fade-in">Collaborative UX workshop — aligning stakeholders on seller pain points and workflow requirements</p>
+      <p class="media-caption fade-in">Collaborative UX workshop, aligning stakeholders on seller pain points and workflow requirements</p>
 
       <p class="section-label fade-in" style="margin-top: 40px;">Key Deliverables</p>
       <div class="deliverables fade-in">
@@ -726,19 +709,19 @@
   </section>
 
   <!-- SOLUTION -->
-  <section class="content-section">
+  <section id="solution" class="content-section">
     <div class="container">
       <p class="section-label fade-in">The Solution</p>
-      <h2 class="section-heading fade-in">A unified proposal journey — powered by agentic automation</h2>
+      <h2 class="section-heading fade-in">A unified proposal journey, powered by agentic automation</h2>
       <p class="body-text fade-in">
-        We designed the Deal Optimization experience as an app living inside Org62 at the Opportunity level — covering the complete end-to-end proposal journey in one place. The key shift: every manual task that previously required spreadsheets or back-and-forth with Deal Desk was replaced with intelligent, agentic automation.
+        We designed the Deal Optimization experience as an app living inside Org62 at the Opportunity level, covering the complete end-to-end proposal journey in one place. The key shift: every manual task that previously required spreadsheets or back-and-forth with Deal Desk was replaced with intelligent, agentic automation.
       </p>
 
       <!-- Before / After slider -->
       <div class="ba-wrap fade-in" id="ba-slider">
-        <img class="ba-before" src="q2c-after.png" alt="After — AI prototype" />
+        <img class="ba-before" src="q2c-after.png" alt="After, AI prototype" />
         <div class="ba-after-clip" id="ba-clip">
-          <img src="q2c-before.png" alt="Before — wireframe" />
+          <img src="q2c-before.png" alt="Before, wireframe" />
         </div>
         <div class="ba-handle" id="ba-handle">
           <div class="ba-knob">
@@ -750,10 +733,10 @@
         <span class="ba-label ba-label-before">Before</span>
         <span class="ba-label ba-label-after">After</span>
       </div>
-      <p class="media-caption fade-in">Drag to compare — wireframe exploration vs. final AI-powered prototype</p>
+      <p class="media-caption fade-in">Drag to compare, wireframe exploration vs. final AI-powered prototype</p>
 
       <p class="body-text fade-in">
-        Sellers can now create and compare multiple pricing scenarios in parallel, see a real-time Deal Score (0–100) reflecting approval probability and margin impact, and get automatic Approval Routing Impact previews — all before submitting to Legal.
+        Sellers can now create and compare multiple pricing scenarios in parallel, see a real-time Deal Score (0–100) reflecting approval probability and margin impact, and get automatic Approval Routing Impact previews, all before submitting to Legal.
       </p>
       <p class="body-text fade-in">
         The experience was designed with Salesforce's Lightning Design System constraints while pushing for a significantly more capable and intuitive interface than sellers had ever had access to internally.
@@ -762,18 +745,18 @@
       <div class="media-full fade-in">
         <img src="q2c-prototype.png" alt="AI Studio prototype detail" />
       </div>
-      <p class="media-caption fade-in">AI Studio interactive prototype — multi-scenario proposal view with real-time Deal Score</p>
+      <p class="media-caption fade-in">AI Studio interactive prototype, multi-scenario proposal view with real-time Deal Score</p>
 
     </div>
   </section>
 
   <!-- ESTIMATED OUTCOMES -->
-  <section class="content-section">
+  <section id="outcomes" class="content-section">
     <div class="container">
       <p class="section-label fade-in">Estimated Outcomes</p>
       <h2 class="section-heading fade-in">Faster alignment, funded follow-through</h2>
       <p class="body-text fade-in">
-        The concept hasn't shipped, so these are estimates measured against how the team worked before the sprint — not shipped-product metrics.
+        The concept hasn't shipped, so these are estimates measured against how the team worked before the sprint, not shipped-product metrics.
       </p>
       <ul class="outcomes-list fade-in">
         <li>
@@ -799,17 +782,27 @@
       <a href="mailto:pbincteux@gmail.com" class="btn btn-primary">Let's talk →</a>
     </div>
   </section>
+  </div>
+  </div>
 
   <script>
-    // Video play button
+    // Video: overlay starts playback once; native controls handle pause after that.
+    // (A container-level click → play() loop breaks pause on iPad.)
     const videoContainer = document.getElementById('video-container')
     const caseVideo      = document.getElementById('case-video')
     const playOverlay    = document.getElementById('video-play-overlay')
 
-    videoContainer.addEventListener('click', () => {
+    playOverlay.addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
       playOverlay.classList.add('hidden')
+      videoContainer.style.cursor = 'default'
+      caseVideo.setAttribute('controls', '')
       caseVideo.controls = true
-      caseVideo.play()
+      const playPromise = caseVideo.play()
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {})
+      }
     })
 
     // Fade-in on scroll
@@ -843,5 +836,6 @@
     window.addEventListener('touchend', () => dragging = false)
   </script>
 
+  <script src="case-toc.js"></script>
 </body>
 </html>
