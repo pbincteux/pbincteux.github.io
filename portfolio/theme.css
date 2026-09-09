@@ -20,7 +20,7 @@
   --thumb-bg: #f2f2f2;
   --quote-mark: rgba(0, 0, 0, 0.06);
   --hmw-accent: rgba(0, 0, 0, 0.2);
-  --shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgb(250, 250, 250) 0px 0px 0px 2px;
   --ba-handle: #171717;
   --play-bg: rgba(255, 255, 255, 0.95);
   --max: 1280px;
