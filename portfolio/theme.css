@@ -1,31 +1,31 @@
-/* Geist / Vercel-inspired light theme tokens */
+/* Vercel design system tokens — aligned to Refero spec */
 :root {
-  --bg: #FAFAFA;
-  --bg-elevated: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-hover: #F5F5F5;
-  --border: #EAEAEA;
-  --border-hover: #CFCFCF;
+  --bg: #fafafa;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: #f5f5f5;
+  --border: #ebebeb;
+  --border-hover: #c9c9c9;
   --text: #171717;
-  --text-muted: #888888;
+  --text-muted: #8f8f8f;
   --text-secondary: #666666;
   --orange: #E8671A;
   --orange-border: rgba(232, 103, 26, 0.4);
-  --radius: 8px;
+  --radius: 6px;
   --radius-sm: 6px;
   --nav-bg: rgba(255, 255, 255, 0.8);
   --btn-primary-bg: #171717;
-  --btn-primary-text: #FFFFFF;
+  --btn-primary-text: #ffffff;
   --btn-primary-hover: #000000;
-  --thumb-bg: #F2F2F2;
+  --thumb-bg: #f2f2f2;
   --quote-mark: rgba(0, 0, 0, 0.06);
   --hmw-accent: rgba(0, 0, 0, 0.2);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   --ba-handle: #171717;
   --play-bg: rgba(255, 255, 255, 0.95);
-  --max: 1200px;
-  --max-prose: 1200px;
-  --max-wide: 1200px;
+  --max: 1280px;
+  --max-prose: 1280px;
+  --max-wide: 1280px;
   --pad-x: 32px;
 }
 
@@ -236,8 +236,8 @@ nav.site-nav .nav-links a:hover {
   max-width: none;
 }
 
-/* TOC appears when side gutters can hold the rail without squeezing the article */
-@media (min-width: 1400px) {
+/* TOC appears when side gutters can hold the rail */
+@media (min-width: 1100px) {
   nav.site-nav.case-page .inner,
   .case-shell {
     grid-template-columns:
