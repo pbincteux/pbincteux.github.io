@@ -274,10 +274,49 @@
 
     .media-full img { width: 100%; display: block; }
 
+    .media-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 40px 0;
+    }
+
+    .media-pair figure {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .media-pair .media-frame {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--thumb-bg);
+      aspect-ratio: 4 / 3;
+    }
+
+    .media-pair .media-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .media-pair .media-caption {
+      margin-top: 10px;
+      margin-bottom: 0;
+      text-align: left;
+    }
+
     .media-caption {
       font-size: 12px; color: var(--text-muted);
       text-align: center; margin-top: -28px;
       margin-bottom: 40px; padding: 0 8px;
+    }
+
+    @media (max-width: 720px) {
+      .media-pair { grid-template-columns: 1fr; }
     }
 
     /* ── BACK ─────────────────────────────────────────── */
@@ -524,13 +563,22 @@
           <span class="subproject-title">Activity Editor: Confirming Activities A/B Test</span>
         </div>
         <p class="body-text">
-          The Activity Editor needed a rethink, SEs were unclear on how to log and confirm their activities. I ran a structured A/B test with two distinct prototypes: Option A focused on clarity and simplicity; Option B offered more layout flexibility. 9 SEs were interviewed through structured usability sessions.
+          The Activity Editor needed a rethink: SEs were unclear how to log and confirm activities. Rather than argue for one direction in a meeting, I ran structured usability sessions with 9 Solution Engineers, walking them through two prototype directions and capturing where each felt clear, confusing, or worth keeping.
         </p>
-        <div class="media-full">
-          <img src="case%20study3/research/Screenshot%202026-08-24%20at%2015.08.31.png" alt="A/B Test, Prototype Option A" />
+        <div class="media-pair">
+          <figure>
+            <div class="media-frame">
+              <img src="case%20study3/research/user-testing.png" alt="Usability session with Solution Engineers around a conference table" />
+            </div>
+            <figcaption class="media-caption">In-person usability sessions with Solution Engineers</figcaption>
+          </figure>
+          <figure>
+            <div class="media-frame">
+              <img src="case%20study3/research/Screenshot%202026-08-24%20at%2015.08.31.png" alt="Activity Editor prototype used in the sessions" />
+            </div>
+            <figcaption class="media-caption">One of the prototypes walked through in session</figcaption>
+          </figure>
         </div>
-        <p class="media-caption">Prototype Option A: Activity Editor with Suggested Activities tab</p>
-
 
       </div>
 
