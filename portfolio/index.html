@@ -236,41 +236,69 @@
       font-size: 12px; color: var(--text-muted);
     }
 
-    /* ── TESTIMONIALS ────────────────────────────────── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+    /* ── TESTIMONIALS CAROUSEL ───────────────────────── */
+    .testimonials-carousel {
+      position: relative;
     }
-
-    .testimonial-card.full { grid-column: span 2; }
 
     .testimonial-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 32px 28px;
+      padding: 36px 32px 28px;
       position: relative;
+      overflow: hidden;
     }
 
     .testimonial-card::before {
       content: '\201C';
-      position: absolute; top: 20px; left: 24px;
+      position: absolute; top: 20px; left: 28px;
       font-size: 64px; line-height: 1;
       color: var(--quote-mark);
       font-family: Georgia, serif;
       pointer-events: none;
     }
 
+    .testimonial-slides {
+      position: relative;
+      min-height: 180px;
+    }
+
+    .testimonial-slide {
+      display: none;
+    }
+
+    .testimonial-slide.is-active {
+      display: block;
+      animation: testimonial-in 0.28s ease;
+    }
+
+    @keyframes testimonial-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+
     .testimonial-quote {
-      font-size: 15px; color: var(--text-secondary);
-      line-height: 1.75; margin-bottom: 24px;
-      padding-top: 4px;
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 28px;
+      padding-top: 8px;
+      max-width: none;
+      padding-right: 8px;
     }
 
     .testimonial-author {
       display: flex; align-items: center; gap: 12px;
+      padding-right: 120px;
+    }
+
+    .testimonial-footer {
+      position: absolute;
+      right: 32px;
+      bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     .testimonial-avatar {
@@ -290,8 +318,74 @@
       line-height: 1.4;
     }
 
+    .testimonial-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .testimonial-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .testimonial-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-hover);
+    }
+
+    .testimonial-btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
+
+    .testimonial-btn svg {
+      width: 14px; height: 14px;
+      display: block;
+    }
+
+    .testimonial-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 4px;
+    }
+
+    .testimonial-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      border: 1px solid var(--text-muted);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .testimonial-dot.is-active {
+      background: var(--text);
+      border-color: var(--text);
+      transform: scale(1.1);
+    }
+
+    .testimonial-dot:hover:not(.is-active) {
+      border-color: var(--text-secondary);
+    }
+
     @media (max-width: 640px) {
-      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonial-card { padding: 28px 22px 22px; }
+      .testimonial-quote { font-size: 15px; max-width: none; }
+      .testimonial-author { padding-right: 0; margin-bottom: 16px; }
+      .testimonial-footer { position: static; justify-content: flex-end; }
     }
 
     /* ── ABOUT ───────────────────────────────────────── */
@@ -429,14 +523,18 @@
     }
 
     @media (max-width: 640px) {
-      .testimonial-card.full { grid-column: span 1; }
-      .testimonials-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; gap: 12px; }
       .project-card.featured { grid-column: span 1; }
       .about-grid { grid-template-columns: 1fr; }
       .about-photo { aspect-ratio: 4/3; }
       #contact { padding: 56px 0; }
       .contact-heading { margin-bottom: 24px; }
+      .testimonial-author { padding-right: 0; margin-bottom: 16px; }
+      .testimonial-footer {
+        position: static;
+        justify-content: flex-end;
+        margin-top: 0;
+      }
     }
 </style>
 
@@ -501,47 +599,63 @@
       <div class="section-header">
         <span class="section-title">What collaborators say</span>
       </div>
-      <div class="testimonials-grid">
 
-        <div class="testimonial-card full fade-in">
-          <p class="testimonial-quote">
-            "Pierre is a pioneer. His ability to spot new trends and improve his day-to-day is inspiring! Pierre's curiosity and creativity constantly push him to experiment and try new approaches. He was amongst the first UX designers of our group to fearlessly play with AI technologies and figure out new ways to deliver exceptionally thought out vibe-coded visions. Having Pierre in your team results in pushing the envelope of what's thought to be possible. With Pierre, innovation is more than a buzzword, it's a reality."
-          </p>
-          <div class="testimonial-author">
-            <img src="Testimonials/pascal.png" alt="Pascal" class="testimonial-avatar" />
-            <div>
-              <div class="testimonial-name">Pascal</div>
-              <div class="testimonial-role">Principal Architect · Salesforce</div>
+      <div class="testimonials-carousel fade-in" data-testimonials-carousel>
+        <div class="testimonial-card">
+          <div class="testimonial-slides">
+
+            <article class="testimonial-slide is-active" data-slide>
+              <p class="testimonial-quote">
+                Pierre is a pioneer. His ability to spot new trends and improve his day-to-day is inspiring. He was amongst the first UX designers of our group to fearlessly play with AI technologies and figure out new ways to deliver exceptionally thought out visions. Having Pierre on your team means pushing the envelope of what's thought to be possible.
+              </p>
+              <div class="testimonial-author">
+                <img src="Testimonials/pascal.png" alt="Pascal" class="testimonial-avatar" />
+                <div>
+                  <div class="testimonial-name">Pascal</div>
+                  <div class="testimonial-role">Principal Architect · Salesforce</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-slide" data-slide>
+              <p class="testimonial-quote">
+                Pierre could meet for brief syncs and then create multiple options for concepts that linked back to flow charts and requirements. I really appreciated the multiple options because it meant we could have a discussion and review what we liked or disliked about each concept.
+              </p>
+              <div class="testimonial-author">
+                <img src="Testimonials/Amarleen.png" alt="Amarleen" class="testimonial-avatar" />
+                <div>
+                  <div class="testimonial-name">Amarleen</div>
+                  <div class="testimonial-role">Manager, Field Innovation · Salesforce</div>
+                </div>
+              </div>
+            </article>
+<article class="testimonial-slide" data-slide>
+              <p class="testimonial-quote">
+                Pierre was instrumental in bringing structure and coherence to the Proposals designs. He translated complex requirements into clean, intuitive design flows that helped clarify the user journey for both internal stakeholders and Sellers. He balanced creativity with practicality: the solutions he proposed were always grounded in real user needs and business context.
+              </p>
+              <div class="testimonial-author">
+                <img src="Testimonials/emma.png" alt="Emma" class="testimonial-avatar" />
+                <div>
+                  <div class="testimonial-name">Emma</div>
+                  <div class="testimonial-role">Manager, Insights &amp; Agentic Transformation · Salesforce</div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="testimonial-footer">
+            <div class="testimonial-controls" aria-label="Testimonial navigation">
+              <button type="button" class="testimonial-btn" data-prev aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="testimonial-dots" data-dots></div>
+              <button type="button" class="testimonial-btn" data-next aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
           </div>
         </div>
-
-        <div class="testimonial-card fade-in">
-          <p class="testimonial-quote">
-            "Pierre is a talented and creative designer. He was able to meet for brief syncs and then create multiple options for concepts that linked back to flow charts and requirements. I really appreciated the multiple options because it meant we could have a discussion and review what we liked/disliked about each concept."
-          </p>
-          <div class="testimonial-author">
-            <img src="Testimonials/Amarleen.png" alt="Amarleen" class="testimonial-avatar" />
-            <div>
-              <div class="testimonial-name">Amarleen</div>
-              <div class="testimonial-role">Manager, Field Innovation · Salesforce</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card fade-in">
-          <p class="testimonial-quote">
-            "Pierre used AI so wisely to make us save time. He also kept things organised and adds a creative touch in everything he does!"
-          </p>
-          <div class="testimonial-author">
-            <img src="Testimonials/emma.png" alt="Emma" class="testimonial-avatar" />
-            <div>
-              <div class="testimonial-name">Emma</div>
-              <div class="testimonial-role">Manager, Insights &amp; Agentic Transformation · Salesforce</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -694,6 +808,43 @@
       { threshold: 0.1 }
     )
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+
+    // Testimonials carousel
+    document.querySelectorAll('[data-testimonials-carousel]').forEach((root) => {
+      const slides = [...root.querySelectorAll('[data-slide]')]
+      const dotsWrap = root.querySelector('[data-dots]')
+      const prevBtn = root.querySelector('[data-prev]')
+      const nextBtn = root.querySelector('[data-next]')
+      if (!slides.length || !dotsWrap) return
+
+      let index = slides.findIndex((s) => s.classList.contains('is-active'))
+      if (index < 0) index = 0
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button')
+        dot.type = 'button'
+        dot.className = 'testimonial-dot' + (i === index ? ' is-active' : '')
+        dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1))
+        dot.addEventListener('click', () => go(i))
+        dotsWrap.appendChild(dot)
+      })
+
+      const dots = [...dotsWrap.querySelectorAll('.testimonial-dot')]
+
+      function go(next) {
+        index = (next + slides.length) % slides.length
+        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index))
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index))
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => go(index - 1))
+      nextBtn && nextBtn.addEventListener('click', () => go(index + 1))
+
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') go(index - 1)
+        if (e.key === 'ArrowRight') go(index + 1)
+      })
+    })
   </script>
 
 </body>
