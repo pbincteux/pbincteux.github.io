@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Pierre Bincteux</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="site-header">
+        <button type="button" class="brand" id="home-btn">pierre bincteux</button>
+        <button type="button" class="about-toggle" id="about-toggle" aria-expanded="false" aria-controls="about-panel">
+          <span class="about-toggle-inner">
+            <span>About</span>
+            <span>Close</span>
+          </span>
+        </button>
+      </header>
+
+      <div class="orange-dot-layer" aria-hidden="true">
+        <div class="orange-dot-track">
+          <span class="about-toggle-sizer">About</span>
+          <span class="orange-dot" id="orange-dot"></span>
+        </div>
+      </div>
+
+      <main class="layout">
+        <section class="col col-copy">
+          <div class="copy-top" id="copy-top"></div>
+          <nav class="work-nav" aria-label="Selected work">
+            <p class="work-label">Selected Work</p>
+            <ol class="work-list" id="work-list"></ol>
+          </nav>
+        </section>
+
+        <section class="col col-media" id="media-col" aria-label="Project media"></section>
+      </main>
+
+      <aside class="about-panel" id="about-panel" aria-hidden="true">
+        <div class="about-scroll">
+          <div class="about-body">
+            <img
+              class="about-avatar"
+              src="assets/about/pierre-about-avatar.png"
+              alt="Pierre Bincteux"
+            />
+            <div class="about-copy">
+              <p>
+                I drive innovation through strategic design leadership: cross-functional collaboration,
+                faster design work, and hands-on systems work so usability and CX stay consistent
+                across enterprise platforms.
+              </p>
+              <p>
+                I started in visual and brand design at early-stage startups in Lyon and Paris 🇫🇷,
+                then moved into enterprise UX at Salesforce in Dublin 🇮🇪, where I’ve spent 7+ years
+                owning strategy and end-to-end design for seller platforms.
+              </p>
+              <p>Available for work.</p>
+            </div>
+
+            <div class="about-meta">
+              <span class="muted">Capabilities</span>
+              <span>User Research, Usability Testing, A/B Testing, Discovery, Journey Mapping, Information Architecture, Wireframing, Prototyping, Interaction Design, Design Systems, Workshop Facilitation, Design Strategy</span>
+            </div>
+
+            <div class="about-quote">
+              <p>“Pierre was instrumental in bringing structure and coherence to the Proposals designs. He translated complex requirements into clean, intuitive design flows that helped clarify the user journey for both internal stakeholders and Sellers. He balanced creativity with practicality: the solutions he proposed were always grounded in real user needs and business context.”</p>
+              <p>— Emma<br /><span class="muted">Manager, Insights &amp; Agentic Transformation · Salesforce</span></p>
+            </div>
+          </div>
+
+          <footer class="about-footer">
+            <p>
+              E:
+              <a href="mailto:pbincteux@gmail.com">pbincteux@gmail.com</a>
+            </p>
+            <p>
+              Connect:
+              <a href="https://www.linkedin.com/in/pierrebincteux/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+            <p class="copyright">2026 All Rights reserved, Pierre Bincteux</p>
+          </footer>
+        </div>
+      </aside>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
