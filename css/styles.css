@@ -72,12 +72,54 @@ a {
 }
 
 .brand,
-.about-toggle {
+.about-toggle,
+.mobile-work-toggle {
   pointer-events: auto;
   font-size: 16px;
   line-height: 19px;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+.mobile-work-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon {
+  display: flex;
+  width: 20px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-icon span {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+
+.app.is-work-menu-open .menu-icon span:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.app.is-work-menu-open .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.app.is-work-menu-open .menu-icon span:last-child {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-about-link {
+  display: none;
 }
 
 .about-toggle {
@@ -486,6 +528,22 @@ a {
     visibility: hidden;
   }
 
+  .mobile-work-toggle {
+    display: flex;
+  }
+
+  .app.is-about-open .mobile-work-toggle {
+    display: none;
+  }
+
+  .about-toggle {
+    display: none;
+  }
+
+  .app.is-about-open .about-toggle {
+    display: block;
+  }
+
   .app::after {
     display: none;
   }
@@ -511,6 +569,52 @@ a {
     width: 100%;
     height: auto;
     overflow: visible;
+  }
+
+  .work-nav {
+    display: none;
+  }
+
+  .app.is-work-menu-open .work-nav {
+    position: fixed;
+    z-index: 45;
+    top: 56px;
+    right: 0;
+    left: 0;
+    display: block;
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work-label {
+    padding-left: 0;
+  }
+
+  .work-list li {
+    padding-left: 40px;
+  }
+
+  .work-index {
+    left: 12px;
+  }
+
+  .work-list button {
+    display: block;
+    min-height: 44px;
+    text-align: left;
+  }
+
+  .mobile-about-link {
+    display: block;
+    min-height: 44px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    text-transform: uppercase;
   }
 
   .intro {

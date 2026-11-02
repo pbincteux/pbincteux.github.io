@@ -14,7 +14,7 @@ const q2cStudy = {
     'Seller proposals span product selection, pricing, legal terms, and approvals. I designed an Opportunity-level Q2C experience in Org62, the internal Salesforce org used by 80,000+ employees, replacing spreadsheet-heavy work with support from autonomous AI agents.',
   impactLabel: 'Impact',
   impact:
-    'Delivered the UX readout and led a vision workshop for a faster path from sales proposal to signed contract. The project connected the P2O initiative and P2C (Prospect-to-Cash) around a shared vision. It became the pilot for a larger cross-team design system, and other teams adopted its approach as a template.',
+    'Delivered the UX readout and led a vision workshop for a faster path from sales proposal to signed contract. The project brought two initiatives together around a shared vision. It became the pilot for a larger cross-team design system, and other teams adopted its approach as a template.',
   gallery: [
     { src: 'assets/project1-q2c/hero.jpg', name: 'Q2C hero', type: 'image' },
     { src: 'assets/project1-q2c/q2c-video-loop.mp4', name: 'Q2C product loop', type: 'video' },
@@ -137,11 +137,14 @@ const app = document.querySelector('.app')
 const aboutToggle = document.getElementById('about-toggle')
 const aboutPanel = document.getElementById('about-panel')
 const homeBtn = document.getElementById('home-btn')
+const workMenuToggle = document.getElementById('work-menu-toggle')
+const mobileAboutLink = document.getElementById('mobile-about-link')
 const copyTop = document.getElementById('copy-top')
 const workList = document.getElementById('work-list')
 const mediaCol = document.getElementById('media-col')
 
 let aboutOpen = false
+let workMenuOpen = false
 let active = null
 let mediaObserver = null
 
@@ -290,6 +293,7 @@ function showProject(index) {
 }
 
 function setAbout(open) {
+  if (open) setWorkMenu(false)
   aboutOpen = open
   app.classList.toggle('is-about-open', aboutOpen)
   aboutToggle.setAttribute('aria-expanded', String(aboutOpen))
@@ -297,14 +301,46 @@ function setAbout(open) {
   aboutPanel.setAttribute('aria-hidden', String(!aboutOpen))
 }
 
+function setWorkMenu(open) {
+  if (open && aboutOpen) setAbout(false)
+  workMenuOpen = open
+  app.classList.toggle('is-work-menu-open', workMenuOpen)
+  workMenuToggle.setAttribute('aria-expanded', String(workMenuOpen))
+  workMenuToggle.setAttribute(
+    'aria-label',
+    workMenuOpen ? 'Close selected work menu' : 'Open selected work menu',
+  )
+}
+
 aboutToggle.addEventListener('click', () => setAbout(!aboutOpen))
 aboutToggle.addEventListener('mouseenter', () => app.classList.add('is-about-hover'))
 aboutToggle.addEventListener('mouseleave', () => app.classList.remove('is-about-hover'))
-homeBtn.addEventListener('click', showHome)
+workMenuToggle.addEventListener('click', () => setWorkMenu(!workMenuOpen))
+mobileAboutLink.addEventListener('click', () => {
+  setWorkMenu(false)
+  setAbout(true)
+})
+homeBtn.addEventListener('click', () => {
+  setWorkMenu(false)
+  showHome()
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+})
 workList.addEventListener('click', (event) => {
   const button = event.target.closest('button[data-index]')
   if (!button) return
+  setWorkMenu(false)
   showProject(Number(button.dataset.index))
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+})
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return
+  if (workMenuOpen) setWorkMenu(false)
+  if (aboutOpen) setAbout(false)
 })
 
 mediaCol.addEventListener('click', (event) => {

@@ -13,6 +13,20 @@
     <div class="app">
       <header class="site-header">
         <button type="button" class="brand" id="home-btn">pierre bincteux</button>
+        <button
+          type="button"
+          class="mobile-work-toggle"
+          id="work-menu-toggle"
+          aria-expanded="false"
+          aria-controls="work-nav"
+          aria-label="Open selected work menu"
+        >
+          <span class="menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
         <button type="button" class="about-toggle" id="about-toggle" aria-expanded="false" aria-controls="about-panel">
           <span class="about-toggle-inner">
             <span>About</span>
@@ -31,9 +45,10 @@
       <main class="layout">
         <section class="col col-copy">
           <div class="copy-top" id="copy-top"></div>
-          <nav class="work-nav" aria-label="Selected work">
+          <nav class="work-nav" id="work-nav" aria-label="Selected work">
             <p class="work-label">Selected Work</p>
             <ol class="work-list" id="work-list"></ol>
+            <button type="button" class="mobile-about-link" id="mobile-about-link">About</button>
           </nav>
         </section>
 
