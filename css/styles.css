@@ -482,6 +482,10 @@ a {
     position: fixed;
   }
 
+  .app.is-about-open .brand {
+    visibility: hidden;
+  }
+
   .app::after {
     display: none;
   }
