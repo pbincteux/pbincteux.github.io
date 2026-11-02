@@ -11,7 +11,7 @@ const q2cStudy = {
   organisation: 'Salesforce',
   roles: ['UX Vision', 'Interaction Design', 'Design Systems', 'Prototyping'],
   description:
-    'Seller proposals span product selection, pricing, legal terms, and approvals. I designed an Opportunity-level Q2C experience in Org62, the internal Salesforce org used by 80,000+ employees, replacing spreadsheet-heavy work with support from autonomous AI agents.',
+    'UX visioning initiative addressing the question: “How might we help sellers turn complex, multi-scenario proposals into optimally configured, legally ready contracts quickly, increasing customer trust and reducing attrition?”',
   impactLabel: 'Impact',
   impact:
     'Delivered the UX readout and led a vision workshop for a faster path from sales proposal to signed contract. The project brought two initiatives together around a shared vision. It became the pilot for a larger cross-team design system, and other teams adopted its approach as a template.',
