@@ -44,7 +44,7 @@ const swStudy = {
   organisation: 'Salesforce',
   roles: ['Feature Design', 'User Research', 'Onboarding', 'Activity Reporting'],
   description:
-    'Solutions Workspace gives pre-sales engineers one place to find demo content, run customer workshops, and track their work in Org62, the internal Salesforce org used by 80,000+ employees.',
+    'Solutions Workspace gives pre-sales engineers one place to find demo content, run customer workshops, and track their work in Org62.',
   impactLabel: 'Impact',
   impact:
     'I designed onboarding and activity reporting, shaping the experience through direct feedback sessions with solution engineers. The activity logging capability reached roughly 5,500 users across Org62.',
@@ -296,6 +296,9 @@ function setAbout(open) {
   if (open) setWorkMenu(false)
   aboutOpen = open
   app.classList.toggle('is-about-open', aboutOpen)
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    app.classList.remove('is-about-hover')
+  }
   aboutToggle.setAttribute('aria-expanded', String(aboutOpen))
   aboutToggle.setAttribute('aria-label', aboutOpen ? 'Close about' : 'Open about')
   aboutPanel.setAttribute('aria-hidden', String(!aboutOpen))
@@ -313,8 +316,12 @@ function setWorkMenu(open) {
 }
 
 aboutToggle.addEventListener('click', () => setAbout(!aboutOpen))
-aboutToggle.addEventListener('mouseenter', () => app.classList.add('is-about-hover'))
-aboutToggle.addEventListener('mouseleave', () => app.classList.remove('is-about-hover'))
+aboutToggle.addEventListener('pointerenter', (event) => {
+  if (event.pointerType === 'mouse') app.classList.add('is-about-hover')
+})
+aboutToggle.addEventListener('pointerleave', (event) => {
+  if (event.pointerType === 'mouse') app.classList.remove('is-about-hover')
+})
 workMenuToggle.addEventListener('click', () => setWorkMenu(!workMenuOpen))
 mobileAboutLink.addEventListener('click', () => {
   setWorkMenu(false)
