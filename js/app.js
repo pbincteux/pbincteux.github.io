@@ -11,10 +11,10 @@ const q2cStudy = {
   organisation: 'Salesforce',
   roles: ['UX Vision', 'Workshop', 'Design Systems', 'AI prototype'],
   description:
-    'Reverse-engineered solution: Worked backwards from the legal-ready contract to define data and configuration needs. UX workshop: Co-facilitated a session on user pain points and workflows to align priorities. AI Rapid prototyping: Ran iterative cycles to refine concepts and optimise UX in real time.',
+    'UX visioning initiative addressing the question: “How might we help sellers turn complex, multi-scenario proposals into optimally configured, legally ready contracts quickly, increasing customer trust and reducing attrition?”',
   impactLabel: 'Impact',
   impact:
-    'Reverse-engineered solution: Worked backwards from the legal-ready contract to define data and configuration needs. UX workshop: Co-facilitated a session on user pain points and workflows to align priorities. AI Rapid prototyping: Ran iterative cycles to refine concepts and optimise UX in real time.',
+    'Worked backwards from the legal-ready contract to define data and configuration needs, co-facilitated a UX workshop to surface user pain points, map workflows, and align priorities, then used AI-assisted rapid prototyping to refine concepts and optimise the user experience in real time.',
   gallery: [
     { src: 'assets/project1-q2c/hero.jpg', name: 'Q2C hero', type: 'image' },
     { src: 'assets/project1-q2c/q2c-video-loop.mp4', name: 'Q2C product loop', type: 'video' },
