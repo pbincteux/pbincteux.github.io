@@ -92,7 +92,7 @@ const boxtalStudy = {
 
 const gssStudy = {
   organisation: 'Salesforce',
-  roles: ['Design Vision', 'UX Design', 'Prototyping'],
+  roles: ['Design Vision', 'UX Design', 'AI prototype'],
   description:
     'Sellers needed proactive guidance through a complex deal, from identifying customer challenges to building a proposal. I shaped an AI sales coach that recommends the next step at each stage.',
   impactLabel: 'Impact',
@@ -129,7 +129,7 @@ const projects = [
   { title: 'Deal Optimization - AI Assisted', study: q2cStudy },
   { title: 'Solutions Workspace', study: swStudy },
   { title: 'Future of Footprint', study: footprintStudy },
-  { title: 'Guided Solution Selling', study: gssStudy },
+  { title: 'Guided Solution Selling - AI Assisted', study: gssStudy },
   { title: 'Boxtal', study: boxtalStudy },
 ]
 
