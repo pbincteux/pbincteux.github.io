@@ -9,12 +9,12 @@ const homeGallery = [
 
 const q2cStudy = {
   organisation: 'Salesforce',
-  roles: ['UX Vision', 'Workshop', 'Prototyping directly in code with AI'],
+  roles: ['UX Vision', 'Interaction Design', 'Design Systems', 'Prototyping'],
   description:
     'UX visioning initiative addressing the question: “How might we help sellers turn complex, multi-scenario proposals into optimally configured, legally ready contracts quickly, increasing customer trust and reducing attrition?”',
-  impactLabel: 'Approach',
+  impactLabel: 'Impact',
   impact:
-    'Worked backwards from the legal-ready contract to define data and configuration needs, co-facilitated a UX workshop to surface user pain points, map workflows, and align priorities, then used AI-assisted rapid prototyping to refine concepts and optimise the user experience in real time.',
+    'Delivered the UX readout and led a vision workshop for a faster path from sales proposal to signed contract. The project brought two initiatives together around a shared vision. It became the pilot for a larger cross-team design system, and other teams adopted its approach as a template.',
   gallery: [
     { src: 'assets/project1-q2c/hero.jpg', name: 'Q2C hero', type: 'image' },
     { src: 'assets/project1-q2c/q2c-video-loop.mp4', name: 'Q2C product loop', type: 'video' },
@@ -126,7 +126,7 @@ const gssStudy = {
 }
 
 const projects = [
-  { title: 'Deal Optimization (AI Rapid Prototyping), study: q2cStudy },
+  { title: 'Q2C Deal Optimization', study: q2cStudy },
   { title: 'Solutions Workspace', study: swStudy },
   { title: 'Future of Footprint', study: footprintStudy },
   { title: 'Guided Solution Selling', study: gssStudy },
