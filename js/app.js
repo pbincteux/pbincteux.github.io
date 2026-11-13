@@ -9,7 +9,7 @@ const homeGallery = [
 
 const q2cStudy = {
   organisation: 'Salesforce',
-  roles: ['UX Vision', 'Interaction Design', 'Design Systems', 'Prototyping'],
+  roles: ['UX Vision', 'Interaction Design', 'Design Systems', 'Prototyping directly in code with AI'],
   description:
     'UX visioning initiative addressing the question: “How might we help sellers turn complex, multi-scenario proposals into optimally configured, legally ready contracts quickly, increasing customer trust and reducing attrition?”',
   impactLabel: 'Impact',
