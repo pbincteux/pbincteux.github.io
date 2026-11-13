@@ -14,7 +14,7 @@ const q2cStudy = {
     'Reverse-engineered solution: Worked backwards from the legal-ready contract to define data and configuration needs. UX workshop: Co-facilitated a session on user pain points and workflows to align priorities. AI Rapid prototyping: Ran iterative cycles to refine concepts and optimise UX in real time.',
   impactLabel: 'Impact',
   impact:
-    'Delivered the UX readout and led a vision workshop for a faster path from sales proposal to signed contract. The project brought two initiatives together around a shared vision. It became the pilot for a larger cross-team design system, and other teams adopted its approach as a template.',
+    'Reverse-engineered solution: Worked backwards from the legal-ready contract to define data and configuration needs. UX workshop: Co-facilitated a session on user pain points and workflows to align priorities. AI Rapid prototyping: Ran iterative cycles to refine concepts and optimise UX in real time.',
   gallery: [
     { src: 'assets/project1-q2c/hero.jpg', name: 'Q2C hero', type: 'image' },
     { src: 'assets/project1-q2c/q2c-video-loop.mp4', name: 'Q2C product loop', type: 'video' },
