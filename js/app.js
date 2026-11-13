@@ -12,7 +12,7 @@ const q2cStudy = {
   roles: ['UX Vision', 'Workshop', 'Design Systems', 'AI prototype'],
   description:
     'UX visioning initiative addressing the question: “How might we help sellers turn complex, multi-scenario proposals into optimally configured, legally ready contracts quickly, increasing customer trust and reducing attrition?”',
-  impactLabel: 'Impact',
+  impactLabel: 'Approach',
   impact:
     'Worked backwards from the legal-ready contract to define data and configuration needs, co-facilitated a UX workshop to surface user pain points, map workflows, and align priorities, then used AI-assisted rapid prototyping to refine concepts and optimise the user experience in real time.',
   gallery: [
