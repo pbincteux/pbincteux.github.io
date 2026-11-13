@@ -126,7 +126,7 @@ const gssStudy = {
 }
 
 const projects = [
-  { title: 'Deal Optimization - AI-assisted prototype', study: q2cStudy },
+  { title: 'Deal Optimization (AI-assisted), study: q2cStudy },
   { title: 'Solutions Workspace', study: swStudy },
   { title: 'Future of Footprint', study: footprintStudy },
   { title: 'Guided Solution Selling', study: gssStudy },
